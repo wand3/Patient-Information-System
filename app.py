@@ -10,7 +10,16 @@ import os
 
 app = create_app()
 
-# AUTH_TYPE = getenv("AUTH_TYPE")
+
+"""
+returns a dictionary that includes the database instance and the models in which 
+flask shell command will import these items automatically into the shell for user
+in flask terminal
+"""
+@app.shell_context_processor
+def make_shell_context():
+    return dict() 
+
 
 
 @app.errorhandler(404)
