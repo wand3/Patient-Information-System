@@ -34,5 +34,17 @@ class Patient(Base):
 #     history = Column
     doctor = Column(String(100), nullable=True)
 
+    # class initialization of Patient model variables
+    def __init__(self, fname, lname, oname, address, email, phone, doctor):
+        self.fname = fname
+        self.lname = lname
+        self.oname = oname
+        self.address = address
+        self.email = email
+        self.phone = phone
+        self.doctor = doctor
 
-    # def __init__(self, )
+
+    def __repr__(self):
+       return "<User '{} {} {} Address:{} Email: {}'>".format(self.fname, self.lname, self.oname, self.address, self.email,\
+                                                              self.phone)
