@@ -33,3 +33,6 @@ class Patient(Base):
 #     establish database relationship
 #     history = Column
     doctor = Column(String(100), nullable=True)
+
+
+    def __init__(self, )
