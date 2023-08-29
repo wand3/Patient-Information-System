@@ -35,4 +35,4 @@ class Patient(Base):
     doctor = Column(String(100), nullable=True)
 
 
-    def __init__(self, )
+    # def __init__(self, )

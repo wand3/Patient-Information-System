@@ -3,12 +3,13 @@
 Route module for the app
 """
 from os import getenv
-from webapp import create_app
+from webapp import create_app, db
 from flask import Flask, jsonify, abort, request
 import os
+from models.models import Patient
 
-
-app = create_app()
+env = os.environ.get('WEBAPP_ENV', 'dev')
+app = create_app('config.%sConfig' % env.capitalize())
 
 
 """
@@ -18,7 +19,7 @@ in flask terminal
 """
 @app.shell_context_processor
 def make_shell_context():
-    return dict() 
+    return dict(db=db, Patient=Patient) 
 
 
 
