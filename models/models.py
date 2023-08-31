@@ -3,12 +3,14 @@
 Patient Model: create a SQLAlchemy model Patient
 """
 from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy import Column, Integer, String
+from sqlalchemy import Column, Integer, String, Text, DateTime
+from datetime import datetime
+from webapp import db
 
 Base = declarative_base()
 
 
-class Patient(Base):
+class Patient(db.Model, Base):
     """Class Patient: Database table named patients
     Attributes:
     * id, integer primary key
@@ -23,16 +25,15 @@ class Patient(Base):
     """
     __tablename__ = 'patients'
 
-    id = Column(Integer, primary_key=True)
-    fname = Column(String(100), nullable=False)
-    lname = Column(String(100), nullable=False)
-    oname = Column(String(100), nullable=True)
-    address = Column(String(100), nullable=False)
-    email = Column(String(100), unique=True)
-    phone = Column(Integer, unique=True, nullable=False)
+    id = db.Column(db.Integer, primary_key=True)
+    fname = db.Column(db.String(100), nullable=False)
+    lname = db.Column(db.String(100), nullable=False)
+    oname = db.Column(db.String(100), nullable=True)
+    address = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), unique=True)
+    phone = db.Column(db.Integer, unique=True, nullable=False)
 #     establish database relationship
-#     history = Column
-    doctor = Column(String(100), nullable=True)
+    phistory = db.relationship('History', backref='patients', lazy='dynamic')
 
     # class initialization of Patient model variables
     def __init__(self, fname, lname, oname, address, email, phone, doctor):
@@ -48,3 +49,36 @@ class Patient(Base):
     def __repr__(self):
        return "<User '{} {} {} Address:{} Email: {}'>".format(self.fname, self.lname, self.oname, self.address, self.email,\
                                                               self.phone)
+
+
+class History(db.Model, Base):
+    """Class Patient: Database table named patients
+    Attributes:
+    * id, integer primary key
+    * allergies, string
+    * complaint, string
+    * occupation, string
+    * medication, string
+    * filed, datetime
+    """
+    __tablename__ = 'history'
+
+    id = db.Column(db.Integer, primary_key=True)
+    allergies = db.Column(db.String(100), default='None')
+    complaint = db.Column(db.Text())
+    occupation = db.Column(db.String(100), nullable=False)
+    medication = db.Column(db.Text(200))
+    filed = db.Column(db.DateTime, default=datetime.utcnow())
+    patient_id = db.Column(db.Integer(), db.ForeignKey('patients.id'))
+
+    def __init__(self, allergies, complaint, occupation, medication, filed):
+        """patient History class initialization
+        """
+        self.allergies = allergies
+        self.complaint = complaint
+        self.occupation = occupation
+        self.medication = medication
+        self.filed = filed
+
+    def __repr__(self):
+        return "<{} {} {}>".format(self.allergies, self.complaint, self.filed)
