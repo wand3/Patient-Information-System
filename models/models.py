@@ -69,6 +69,7 @@ class History(db.Model, Base):
     filed = db.Column(db.DateTime, default=datetime.utcnow())
     patient_id = db.Column(db.Integer(), db.ForeignKey('patients.id'))
 
+
     def __init__(self, allergies, complaint, occupation, medication, filed):
         """patient History class initialization
         """
@@ -76,7 +77,8 @@ class History(db.Model, Base):
         self.complaint = complaint
         self.occupation = occupation
         self.medication = medication
-        self.filed = filed
+        if filed is None:
+            self.filed = datetime.utcnow()
 
     def __repr__(self):
         return "<{} {} {}>".format(self.allergies, self.complaint, self.filed)
