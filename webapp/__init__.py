@@ -21,7 +21,7 @@ def create_app(object_name):
     
     db.init_app(app)
     
-    app.register_blueprint(app_views, url_prefix='/pis')
+    app.register_blueprint(app_views, url_prefix='/')
 
 
 

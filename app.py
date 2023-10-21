@@ -6,7 +6,7 @@ from os import getenv
 from webapp import create_app, db
 from flask import Flask, jsonify, abort, request
 import os
-from models.models import Patient, History
+from models.base_model import Patient, History
 
 env = os.environ.get('WEBAPP_ENV', 'dev')
 app = create_app('config.%sConfig' % env.capitalize())
