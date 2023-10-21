@@ -15,6 +15,10 @@ Base = declarative_base()
 class BaseModel(db.Model, Base):
     """
         attributes and functions for BaseModel class
+        Attributes:
+            * id, integer primary key
+            * created_at, datetime
+            * updated_at, datetime
     """
     id = db.Column(db.Integer, primary_key=True, nullable=False)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
@@ -38,4 +42,17 @@ class BaseModel(db.Model, Base):
             attr_dict['id'] = str(uuid4())
         if 'created_at' not in attr_dict:
             attr_dict['created_at'] = datetime.utcnow()
+        elif not isinstance(attr_dict['created_at'], datetime):
+            attr_dict['created_at'] = datetime.strptime(
+                attr_dict['created_at'], "%Y-%m-%d %H:%M:%S.%f"
+            )
         
+        if 'updated_at' not in attr_dict:
+            attr_dict['updated_at'] = datetime.utcnow()
+        elif not isinstance(attr_dict['updated_at'], datetime):
+            attr_dict['updated_at'] = datetime.strptime(
+                attr_dict['updated_at'], "%Y-%m-%d %H:%M:%S.%f"
+            )
+
+        for attr, val in attr_dict.items():
+            setattr(self, attr, val) 
