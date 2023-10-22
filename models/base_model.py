@@ -55,4 +55,5 @@ class BaseModel(db.Model, Base):
             )
 
         for attr, val in attr_dict.items():
-            setattr(self, attr, val) 
+            setattr(self, attr, val)
+            

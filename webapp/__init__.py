@@ -2,7 +2,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from webapp.views import app_views
 
-
 db = SQLAlchemy()
 
 def create_app(object_name):
