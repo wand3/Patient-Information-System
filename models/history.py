@@ -5,40 +5,38 @@ City Class from Models Module
 import os
 from webapp import db
 from models.base_model import BaseModel, Base
+# from models.patient import Pati
 from sqlalchemy.orm import relationship
-from sqlalchemy import Column, Integer, String, Float, ForeignKey
+from sqlalchemy import Column, Integer, String, Text, ForeignKey
 
 
 class History(BaseModel, Base):
     """Class Patient: Database table named patients
     Attributes:
-    * id, integer primary key
-    * allergies, string
-    * complaint, string
-    * occupation, string
-    * medication, string
-    * filed, datetime
+        * id, integer primary key
+        * allergies, string
+        * complaint, string
+        * occupation, string
+        * medication, string
     """
     __tablename__ = 'history'
 
-    id = db.Column(db.Integer, primary_key=True)
-    allergies = db.Column(db.String(100), default='None')
-    complaint = db.Column(db.Text())
-    occupation = db.Column(db.String(100), nullable=False)
-    medication = db.Column(db.Text(200))
-    filed = db.Column(db.DateTime, default=datetime.utcnow())
-    patient_id = db.Column(db.Integer(), db.ForeignKey('patients.id'))
+    id = Column(Integer, primary_key=True)
+    allergies = Column(String(100), default='None')
+    complaint = Column(Text())
+    occupation = Column(String(100), nullable=False)
+    medication = Column(Text(200))
+    patient_id = Column(Integer(), ForeignKey('patients.id'), nullable=False)
 
 
-    def __init__(self, allergies, complaint, occupation, medication, filed):
+    def __init__(self, allergies, complaint, occupation, medication):
         """patient History class initialization
         """
         self.allergies = allergies
         self.complaint = complaint
         self.occupation = occupation
         self.medication = medication
-        if filed is None:
-            self.filed = datetime.utcnow()
-
+        super().__init__()
+        
     def __repr__(self):
-        return "<{} {} {}>".format(self.allergies, self.complaint, self.filed)
+        return "<{} {} {}>".format(self.allergies, self.complaint)

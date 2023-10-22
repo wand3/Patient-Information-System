@@ -6,7 +6,9 @@ from os import getenv
 from webapp import create_app, db
 from flask import Flask, jsonify, abort, request
 import os
-from models.base_model import Patient, History
+from models.base_model import BaseModel
+from models.history import History
+from models.patient import Patient
 
 env = os.environ.get('WEBAPP_ENV', 'dev')
 app = create_app('config.%sConfig' % env.capitalize())
@@ -19,7 +21,7 @@ in flask terminal
 """
 @app.shell_context_processor
 def make_shell_context():
-    return dict(db=db, Patient=Patient, History=History) 
+    return dict(db=db, BaseModel=BaseModel, Patient=Patient, History=History) 
 
 
 

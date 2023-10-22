@@ -12,7 +12,7 @@ from uuid import uuid4, UUID
 Base = declarative_base()
 
 
-class BaseModel(db.Model, Base):
+class BaseModel:
     """
         attributes and functions for BaseModel class
         Attributes:
@@ -20,9 +20,9 @@ class BaseModel(db.Model, Base):
             * created_at, datetime
             * updated_at, datetime
     """
-    id = db.Column(db.Integer, primary_key=True, nullable=False)
-    created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
-    updated_at= db.Column(db.DateTime, nullable=False, default=datetime.utcnow())
+    id = Column(Integer, primary_key=True, nullable=False)
+    created_at = Column(DateTime, nullable=False, default=datetime.utcnow())
+    updated_at= Column(DateTime, nullable=False, default=datetime.utcnow())
 
     def __init__(self, *args, **kwargs):
         """
