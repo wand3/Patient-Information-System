@@ -1,8 +1,6 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
 from webapp.views import app_views
 
-db = SQLAlchemy()
 
 def create_app(object_name):
     """
@@ -17,8 +15,6 @@ def create_app(object_name):
     import config
     app.config.from_object(object_name)
 
-    
-    db.init_app(app)
     
     app.register_blueprint(app_views, url_prefix='/')
 
