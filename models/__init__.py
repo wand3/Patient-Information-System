@@ -4,5 +4,5 @@ from models.patient import Patient
 
 import config
 CNC = config.Config.CNC
-storage = config.Config()
+storage = config.TestConfig()
 storage.reload()

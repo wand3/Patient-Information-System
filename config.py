@@ -37,11 +37,14 @@ class Config:
         """
             creates engine self.__engine
         """
-        DATABASE_URL = 'sqlite:///' + os.path.join(basedir, 'database.db')
-        self.__engine = create_engine(Config.__init__.DATABASE_URL)
+        self.__engine = create_engine(Config.DATABASE_URL)
 
-        if os.environ.get('WEBAPP_ENV') == 'test':
+        if os.environ.get('WEBAPP_ENV') != 'test':
+            self.__engine = create_engine(Config.DATABASE_URL)
+        else:
             Base.metadata.drop_all(self.__engine)
+            TEST_DB_URL = "sqlite:///test.db"
+            self.__engine = create_engine(TEST_DB_URL)
 
     def all(self, cls=None):
         """
@@ -140,11 +143,12 @@ class DevConfig(Config):
 
 class TestConfig(Config):
     DEBUG = True
-    
-    def __init__(self):
-        DATABASE_URL = 'sqlite:///' + os.path.join(basedir, 'test.db')
-        self.__engine = create_engine(TestConfig.__init__.DATABASE_URL)
-    # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'test.db')
+
+#    __engine = None                                               __session = None
+#    DATABASE_URL = 'sqlite:///' + os.path.join(basedir, 'test.db')
+#    def __init__(self):
+#        self.__engine = create_engine(TestConfig.DATABASE_URL)
+# SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'test.db')
 
 config = {
     'testing': TestConfig}

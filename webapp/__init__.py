@@ -19,7 +19,4 @@ def create_app(object_name):
     app.register_blueprint(app_views, url_prefix='/')
 
 
-
-
-
     return app
