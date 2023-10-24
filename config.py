@@ -8,7 +8,6 @@ from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
 from models import patient, history
-# from typing import List, Dict
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -17,7 +16,8 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'any complex string'
 #    SQLALCHEMY_TRACK_MODIFICATIONS = False
-    DATABASE_URL = 'sqlite:///' + os.path.join(basedir, 'database.db')
+    WEBAPP_ENV = os.environ.get('WEBAPP_ENV')
+    DATABASE_URL = 'sqlite:///' + os.path.join(basedir, f'{WEBAPP_ENV}.db')
 
     """
         handles long term storage of all class instances
@@ -37,13 +37,11 @@ class Config:
         """
             creates engine self.__engine
         """
-        self.__engine = create_engine(Config.DATABASE_URL)
-
         if os.environ.get('WEBAPP_ENV') != 'test':
             self.__engine = create_engine(Config.DATABASE_URL)
         else:
-            Base.metadata.drop_all(self.__engine)
             TEST_DB_URL = "sqlite:///test.db"
+            #Base.metadata.drop_all(self.__engine)
             self.__engine = create_engine(TEST_DB_URL)
 
     def all(self, cls=None):

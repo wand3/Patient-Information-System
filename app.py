@@ -10,14 +10,14 @@ from models.base_model import BaseModel
 from models.history import History
 from models.patient import Patient
 
-env = os.environ.get('WEBAPP_ENV', 'test')
+env = os.environ.get('WEBAPP_ENV')
 app = create_app('config.%sConfig' % env.capitalize())
 
 
 """
-returns a dictionary that includes the database instance and the models in which 
-flask shell command will import these items automatically into the shell for user
-in flask terminal
+    returns a dictionary that includes the database instance and the models in which 
+    flask shell command will import these items automatically into the shell for user
+    in flask terminal
 """
 @app.shell_context_processor
 def make_shell_context():
