@@ -6,7 +6,6 @@ Base Model: create a SQLAlchemy model BaseModel
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, Text, DateTime
 from datetime import datetime
-from webapp import db
 from uuid import uuid4, UUID
 
 Base = declarative_base()

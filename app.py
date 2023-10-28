@@ -3,25 +3,25 @@
 Route module for the app
 """
 from os import getenv
-from webapp import create_app, db
+from webapp import create_app
 from flask import Flask, jsonify, abort, request
 import os
 from models.base_model import BaseModel
 from models.history import History
 from models.patient import Patient
 
-env = os.environ.get('WEBAPP_ENV', 'dev')
+env = os.environ.get('WEBAPP_ENV')
 app = create_app('config.%sConfig' % env.capitalize())
 
 
 """
-returns a dictionary that includes the database instance and the models in which 
-flask shell command will import these items automatically into the shell for user
-in flask terminal
+    returns a dictionary that includes the database instance and the models in which 
+    flask shell command will import these items automatically into the shell for user
+    in flask terminal
 """
 @app.shell_context_processor
 def make_shell_context():
-    return dict(db=db, BaseModel=BaseModel, Patient=Patient, History=History) 
+    return dict(BaseModel=BaseModel, Patient=Patient, History=History) 
 
 
 

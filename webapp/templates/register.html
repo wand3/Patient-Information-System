@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Register{% endblock %}
+{% block head %}
+  {{ super() }}
+  <style type="text/css">
+    .important { color: #336699; }
+  </style>
+{% endblock %}
+{% block content %}
+  <div class="regform">
+    <form method="POST" action="">
+        {{ form.csrf_token }}
+        {{ form.fname.label }} {{ form.fname(size=60) }}
+        {{ form.lname.label }} {{ form.lname(size=60) }}
+        {{ form.oname.label }} {{ form.oname(size=60) }}
+        {{ form.address.label }} {{ form.address }}
+        {{ form.email.label }} {{ form.email }}
+        {{ form.phone.label }} {{ form.phone(size=12) }}
+        {{ form.mob.label }} {{ form.mob(size=60) }}
+        {{ form.yob.label }} {{ form.yob(size=60) }}
+        {{ form.gender.label }} {{ form.gender(size=10) }}
+        {{ form.bloodGroup.label }} {{ form.bloodGroup(size=3) }}
+        {{ form.genotype.label }} {{ form.genotype(size=3) }}
+        {{ form.history.label }} {{ form.history }}
+        {{ form.doctor.label }} {{ form.doctor(size=60) }}
+        <input type="submit" value="Register">
+    </form>
+
+  </div>
+{% endblock %}
+{% block footer %}
+{% endblock %}

@@ -3,7 +3,6 @@
 City Class from Models Module
 """
 import os
-from webapp import db
 from models.base_model import BaseModel, Base
 # from models.patient import Pati
 from sqlalchemy.orm import relationship

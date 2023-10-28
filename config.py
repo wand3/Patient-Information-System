@@ -8,7 +8,6 @@ from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
 from models import patient, history
-# from typing import List, Dict
 
 
 basedir = os.path.abspath(os.path.dirname(__file__))
@@ -17,6 +16,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'any complex string'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
 
     """
         handles long term storage of all class instances
@@ -36,9 +36,7 @@ class Config:
         """
             creates engine self.__engine
         """
-        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
-
-        self.__engine = create_engine(SQLALCHEMY_DATABASE_URI)
+        self.__engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
 
         if os.environ.get('WEBAPP_ENV') == 'test':
             Base.metadata.drop_all(self.__engine)
@@ -140,11 +138,12 @@ class DevConfig(Config):
 
 class TestConfig(Config):
     DEBUG = True
-    
-    def __init__(self):
-        self.__engine = create_engine("sqlite:///test.db")
-        super().__init__()
-    # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'test.db')
+
+#    __engine = None                                               __session = None
+#    DATABASE_URL = 'sqlite:///' + os.path.join(basedir, 'test.db')
+#    def __init__(self):
+#        self.__engine = create_engine(TestConfig.DATABASE_URL)
+# SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'test.db')
 
 config = {
     'testing': TestConfig}
