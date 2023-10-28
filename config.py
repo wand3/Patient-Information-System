@@ -17,7 +17,6 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'any complex string'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
 
     """
         handles long term storage of all class instances
@@ -37,7 +36,9 @@ class Config:
         """
             creates engine self.__engine
         """
-        self.__engine = create_engine(Config.SQLALCHEMY_DATABASE_URI)
+        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
+
+        self.__engine = create_engine(SQLALCHEMY_DATABASE_URI)
 
         if os.environ.get('WEBAPP_ENV') == 'test':
             Base.metadata.drop_all(self.__engine)
