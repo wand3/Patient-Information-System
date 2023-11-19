@@ -11,7 +11,10 @@ from models.history import History
 from models.patient import Patient
 
 env = os.environ.get('WEBAPP_ENV')
-app = create_app('config.%sConfig' % env.capitalize())
+if env == None:
+    raise Exception("Set WEBAPP_ENV first (dev, test, prod)")
+else:
+    app = create_app('config.%sConfig' % env.capitalize())
 
 
 """

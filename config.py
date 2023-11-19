@@ -16,7 +16,12 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'any complex string'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
+
+    env = os.environ.get('WEBAPP_ENV')
+    if env == None:
+        raise Exception("Set WEBAPP_ENV first (dev, test, prod)")
+    else:
+        SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, '{}.db').format(os.environ.get('WEBAPP_ENV'))
 
     """
         handles long term storage of all class instances
@@ -133,17 +138,17 @@ class Config:
 
 class DevConfig(Config):
     DEBUG = True
-    # SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'database.db')
-
+    
 
 class TestConfig(Config):
     DEBUG = True
 
-#    __engine = None                                               __session = None
-#    DATABASE_URL = 'sqlite:///' + os.path.join(basedir, 'test.db')
-#    def __init__(self):
-#        self.__engine = create_engine(TestConfig.DATABASE_URL)
-# SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'test.db')
+
+class ProdConfig(Config):
+    pass
+
 
 config = {
-    'testing': TestConfig}
+    'development': DevConfig,
+    'testing': TestConfig,
+    'production': ProdConfig}
