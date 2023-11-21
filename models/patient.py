@@ -31,17 +31,33 @@ class Patient(BaseModel, Base):
     address = Column(String(100), nullable=False)
     email = Column(String(100), unique=True)
     phone = Column(Integer, unique=True, nullable=False)
+    mob = Column(Integer, nullable=False)
+    yob = Column(Integer, nullable=False)
+    gender = Column(String(10), nullable=False)
+    bloodGroup = Column(String(3), nullable=False)
+    genotype = Column(String(2), nullable=False)
+    history = Column(Text())
+    doctor = Column(String(), nullable=True)
+
+
 #     establish database relationship
     phistory = relationship('History', backref='patients', lazy='dynamic', cascade='delete')
 
     # class initialization of Patient model variables
-    def __init__(self, fname, lname, oname, address, email, phone):
+    def __init__(self, fname, lname, oname, address, email, phone, mob, yob, gender, bloodGroup, genotype, history,doctor):
         self.fname = fname
         self.lname = lname
         self.oname = oname
         self.address = address
         self.email = email
         self.phone = phone
+        self.mob = mob
+        self.yob = yob
+        self.gender = gender
+        self.bloodGroup = bloodGroup
+        self.genotype = genotype
+        self.history = history
+        self.doctor = doctor
         super().__init__()
 
 

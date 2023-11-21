@@ -17,3 +17,4 @@ class PatientRegForm(FlaskForm):
     genotype = StringField( 'Genotype', validators=[DataRequired()])
     history = TextAreaField( 'History', validators=[DataRequired()])
     doctor = StringField( 'Doctor', validators=[DataRequired()])
+    submit = SubmitField('Register')
