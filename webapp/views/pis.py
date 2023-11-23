@@ -3,9 +3,10 @@ from flask import Flask, render_template, url_for, flash, redirect, request, mak
 from webapp.views import app_views
 from forms import PatientRegForm
 from models import Patient
-from config import Config
+from config import DevConfig
 from sqlalchemy.orm import Session
 
+session = DevConfig.Session()
 # index route
 @app_views.route('/', methods=['GET'], strict_slashes=False)
 def index():
@@ -28,6 +29,7 @@ def register():
             :param form: The form the field belongs to.
         """
     # new_patient = request.get_json()
+        
         new_patient = Patient( form.fname.data, 
                         form.lname.data,
                         form.oname.data,
@@ -42,8 +44,8 @@ def register():
                         form.history.data,
                         form.doctor.data,
                         )
-        Session.add(new_patient)
-        Session.commit()
+        session.add(new_patient)
+        session.commit()
         flash('Thanks for registering')
         return redirect(url_for('index'))
     return render_template("register.html", form=form)

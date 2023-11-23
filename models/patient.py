@@ -44,7 +44,7 @@ class Patient(BaseModel, Base):
     phistory = relationship('History', backref='patients', lazy='dynamic', cascade='delete')
 
     # class initialization of Patient model variables
-    def __init__(self, fname, lname, oname, address, email, phone, mob, yob, gender, bloodGroup, genotype, history,doctor):
+    def __init__(self, fname, lname, oname, address, email, phone, mob, yob, gender, bloodGroup, genotype, history, doctor):
         self.fname = fname
         self.lname = lname
         self.oname = oname
