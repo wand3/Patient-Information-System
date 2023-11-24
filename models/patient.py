@@ -6,7 +6,6 @@ from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Text, DateTime
 from datetime import datetime
 from models.base_model import BaseModel, Base
-from .history import History
 
 
 class Patient(Base, BaseModel):
@@ -41,6 +40,7 @@ class Patient(Base, BaseModel):
 
 
 #     establish database relationship
+    from .history import History
     phistory = relationship('History', backref='patients', lazy='dynamic', cascade='delete')
 
     # class initialization of Patient model variables

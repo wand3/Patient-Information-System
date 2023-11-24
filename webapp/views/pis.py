@@ -8,7 +8,8 @@ from config import db_session
 
 @app_views.route('/', methods=['GET'], strict_slashes=False)
 def index():
-    return render_template("index.html")
+    all = db_session.query(Patient)
+    return render_template("index.html", all=all)
 
 
 # Patient Registeration route

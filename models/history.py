@@ -4,7 +4,6 @@ City Class from Models Module
 """
 import os
 from models.base_model import BaseModel, Base
-from patient import Patient
 from sqlalchemy import Column, Integer, String, Text, ForeignKey
 
 
@@ -24,6 +23,7 @@ class History(Base, BaseModel):
     complaint = Column(Text())
     occupation = Column(String(100), nullable=False)
     medication = Column(Text(200))
+
     patient_id = Column(Integer(), ForeignKey('patients.id'), nullable=False)
 
 
