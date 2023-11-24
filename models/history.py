@@ -4,12 +4,11 @@ City Class from Models Module
 """
 import os
 from models.base_model import BaseModel, Base
-# from models.patient import Pati
-from sqlalchemy.orm import relationship
+from patient import Patient
 from sqlalchemy import Column, Integer, String, Text, ForeignKey
 
 
-class History(BaseModel, Base):
+class History(Base, BaseModel):
     """Class Patient: Database table named patients
     Attributes:
         * id, integer primary key

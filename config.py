@@ -5,7 +5,7 @@ Database engine and Config
 
 import os
 from sqlalchemy import create_engine, MetaData
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.orm import sessionmaker, scoped_session
 from models.base_model import Base
 from models import patient, history
 
@@ -18,20 +18,6 @@ env = os.environ.get('WEBAPP_ENV')
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'any complex string'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-
-    # """
-    #     handles long term storage of all class instances
-    # """
-    # CNC = {
-    #     'Patient': patient.Patient,
-    #     'History': history.History
-    # }
-
-    """
-        handles storage for database
-    """
-    # engine = None
-    # __session = None
     
 
  
@@ -40,10 +26,11 @@ class DevConfig(Config):
     
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, '{}.db').format(os.environ.get('WEBAPP_ENV'))
 
-    engine = create_engine(SQLALCHEMY_DATABASE_URI)
-    Session = sessionmaker(bind=engine)
-    
-    Base.metadata.create_all(engine)
+    engine = create_engine(SQLALCHEMY_DATABASE_URI, pool_pre_ping=True)
+    global db_session
+    db_session = scoped_session(sessionmaker(autoflush=False, autocommit=False, bind=engine)) 
+    # Base.metadata.drop_all(engine)
+    # Base.metadata.create_all(bind=engine)
     
 
 class TestConfig(Config):

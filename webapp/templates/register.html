@@ -10,12 +10,12 @@
   <div class="regform">
     <form method="POST" action="">
         {{ form.csrf_token }}
-        {{ form.fname.label }} {{ form.fname(size=60) }}
-        {{ form.lname.label }} {{ form.lname(size=60) }}
-        {{ form.oname.label }} {{ form.oname(size=60) }}
+        {{ form.fname.label }} {{ form.fname }}
+        {{ form.lname.label }} {{ form.lname }}
+        {{ form.oname.label }} {{ form.oname }}
         {{ form.address.label }} {{ form.address }}
         {{ form.email.label }} {{ form.email }}
-        {{ form.phone.label }} {{ form.phone(size=12) }}
+        {{ form.phone.label }} {{ form.phone }}
         {{ form.mob.label }} {{ form.mob }}
         {{ form.yob.label }} {{ form.yob }}
         {{ form.gender.label }} {{ form.gender }}

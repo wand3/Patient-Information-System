@@ -1,13 +1,11 @@
 
 from flask import Flask, render_template, url_for, flash, redirect, request, make_response
 from webapp.views import app_views
+from models.patient import Patient
 from forms import PatientRegForm
-from models import Patient
-from config import DevConfig
-from sqlalchemy.orm import Session
+from config import db_session
 
-session = DevConfig.Session()
-# index route
+
 @app_views.route('/', methods=['GET'], strict_slashes=False)
 def index():
     return render_template("index.html")
@@ -16,40 +14,35 @@ def index():
 # Patient Registeration route
 @app_views.route('/register', methods=['GET', 'POST'], strict_slashes=False)
 def register():
-    form = PatientRegForm()
-    # db_session = Config.Session
-    # resp = make_response(render_template('register.html', form=form))
-    # request.headers['Content-Type'] = 'application/json'
-    
-    if request.method == 'POST' and form.validate():
+    form = PatientRegForm(request.form)
+    if form.validate_on_submit():
         """
             Override if you need field-level validation. Runs before any other
             validators.
 
             :param form: The form the field belongs to.
         """
-    # new_patient = request.get_json()
-        
-        new_patient = Patient( form.fname.data, 
-                        form.lname.data,
-                        form.oname.data,
-                        form.address.data,
-                        form.email.data,
-                        form.phone.data,
-                        form.mob.data,
-                        form.yob.data,
-                        form.gender.data,
-                        form.bloodGroup.data,
-                        form.genotype.data,
-                        form.history.data,
-                        form.doctor.data,
+        new_patient = Patient( 
+                        fname=form.fname.data, 
+                        lname=form.lname.data,
+                        oname=form.oname.data,
+                        address=form.address.data,
+                        email=form.email.data,
+                        phone=form.phone.data,
+                        mob=form.mob.data,
+                        yob=form.yob.data,
+                        gender=form.gender.data,
+                        bloodGroup=form.bloodGroup.data,
+                        genotype=form.genotype.data,
+                        history=form.history.data,
+                        doctor=form.doctor.data,
                         )
-        session.add(new_patient)
-        session.commit()
+        db_session.add(new_patient)
+        db_session.commit()
+        db_session.close()
         flash('Thanks for registering')
-        return redirect(url_for('index'))
+        return redirect(url_for('app_views.index'))
     return render_template("register.html", form=form)
-    # return resp
 
 # get patient route
 
