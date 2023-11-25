@@ -45,9 +45,14 @@ def register():
         return redirect(url_for('app_views.index'))
     return render_template("register.html", form=form)
 
-# get patient route
+# search patient
+@app_views.route('/search')
 
 
 # update patient information
+@app_views.route('/edit-record/<int:id>', methods=["GET", "POST"], strict_slashes=False)
+def edit_record(id):
+    patient_record = db_session.query(Patient, id)
 
 
+# delete patient record
