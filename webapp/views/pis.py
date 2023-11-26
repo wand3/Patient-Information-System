@@ -50,9 +50,40 @@ def register():
 
 
 # update patient information
-@app_views.route('/edit-record/<int:id>', methods=["GET", "POST"], strict_slashes=False)
+@app_views.route('/edit-record/<int:id>', methods=["GET", "PUT"], strict_slashes=False)
 def edit_record(id):
-    patient_record = db_session.query(Patient, id)
+    """
+        load patient profile to be editted by id
+    """ 
+    patient_record = db_session.get('Patient', id)
+    form = PatientRegForm(request.form)
+    if form.validate_on_submit():
+        new_edit = Patient(
+                fname=form.fname.data, 
+                lname=form.lname.data,
+                oname=form.oname.data,
+                address=form.address.data,
+                email=form.email.data,
+                phone=form.phone.data,
+                mob=form.mob.data,
+                yob=form.yob.data,
+                gender=form.gender.data,
+                bloodGroup=form.bloodGroup.data,
+                genotype=form.genotype.data,
+                history=form.history.data,
+                doctor=form.doctor.data,
+            )
+        db_session.add(new_edit)
+        db_session.commit()
+        flash('Profile edit successful')
+        return redirect(url_for('app_views.index'))
+    return render_template('update.html', form=form, patient_record=patient_record)
+
+
+
+
+
+
 
 
 # delete patient record
