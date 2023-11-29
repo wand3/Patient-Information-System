@@ -4,13 +4,12 @@
 
 {% block content %}
     <div class="last-update">
-        <h4><Last Update/h4>
-        {% for patient in patient_record %}
-            <p>{{ patient.updated_at }}</p>
-        {% endblock %}
+        <h4>Last Update</h4>
+       
     </div>
     <div class="edit-profile">
-        <form method="PUT" action="">
+    {% for i in id %}
+        <form method="POST" action="">
         {{ form.csrf_token }}
             {{ form.fname.label }} {{ form.fname }}
             {{ form.lname.label }} {{ form.lname }}
@@ -27,6 +26,7 @@
             {{ form.doctor.label }} {{ form.doctor }}
             {{ form.submit }} 
         </form>
+    {% endfor %}
     </div>
 {% endblock %}
 {% block footer %}

@@ -2,7 +2,7 @@
 from flask import Flask, render_template, url_for, flash, redirect, request, make_response
 from webapp.views import app_views
 from models.patient import Patient
-from forms import PatientRegForm
+from forms import PatientRegForm, UpdatePatientForm
 from config import db_session
 
 
@@ -46,17 +46,17 @@ def register():
     return render_template("register.html", form=form)
 
 # search patient
-@app_views.route('/search')
+# @app_views.route('/search')
 
 
 # update patient information
-@app_views.route('/edit-record/<int:id>', methods=["GET", "PUT"], strict_slashes=False)
+@app_views.route('/edit-record/<int:id>', methods=["GET", "PUT", "PUT"], strict_slashes=False)
 def edit_record(id):
     """
         load patient profile to be editted by id
     """ 
-    patient_record = db_session.get('Patient', id)
-    form = PatientRegForm(request.form)
+    id = db_session.query(Patient).filter(Patient.id == id).first()
+    form = UpdatePatientForm(request.form)
     if form.validate_on_submit():
         new_edit = Patient(
                 fname=form.fname.data, 
@@ -77,7 +77,7 @@ def edit_record(id):
         db_session.commit()
         flash('Profile edit successful')
         return redirect(url_for('app_views.index'))
-    return render_template('update.html', form=form, patient_record=patient_record)
+    return render_template('update.html', form=form, id=id)
 
 
 
