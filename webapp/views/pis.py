@@ -4,6 +4,8 @@ from webapp.views import app_views
 from models.patient import Patient
 from forms import PatientRegForm, UpdatePatientForm
 from config import db_session
+from datetime import datetime
+from sqlalchemy import update
 
 
 @app_views.route('/', methods=['GET'], strict_slashes=False)
@@ -50,20 +52,21 @@ def register():
 
 
 # update patient information
-@app_views.route('/edit-record/<int:id>', methods=["GET", "PUT", "PUT"], strict_slashes=False)
-def edit_record(id):
+@app_views.route('/edit-record/<int:id>', methods=["GET", "PUT"], strict_slashes=False)
+def edit_record(request):
     """
         load patient profile to be editted by id
     """ 
-    id = db_session.query(Patient).filter(Patient.id == id).first()
+    # id = db_session.query(Patient).filter(Patient.id == id).first()
+    id = db_session.query(Patient)
     form = UpdatePatientForm(request.form)
-    if form.validate_on_submit():
-        new_edit = Patient(
+    if request.method == "POST":
+        new_edit = db_session.query(Patient).filter(Patient.id == "id").update(dict(
                 fname=form.fname.data, 
                 lname=form.lname.data,
                 oname=form.oname.data,
                 address=form.address.data,
-                email=form.email.data,
+                email=id.email,
                 phone=form.phone.data,
                 mob=form.mob.data,
                 yob=form.yob.data,
@@ -71,12 +74,28 @@ def edit_record(id):
                 bloodGroup=form.bloodGroup.data,
                 genotype=form.genotype.data,
                 history=form.history.data,
-                doctor=form.doctor.data,
+                doctor=form.doctor.data,), synchronize_session="fetch"
             )
+        # new_edit = Patient(
+        #         fname=form.fname.data, 
+        #         lname=form.lname.data,
+        #         oname=form.oname.data,
+        #         address=form.address.data,
+        #         email=form.email.data,
+        #         phone=form.phone.data,
+        #         mob=form.mob.data,
+        #         yob=form.yob.data,
+        #         gender=form.gender.data,
+        #         bloodGroup=form.bloodGroup.data,
+        #         genotype=form.genotype.data,
+        #         history=form.history.data,
+        #         doctor=form.doctor.data,
+        #         updated_at=datetime.utcnow()
+        #     )
         db_session.add(new_edit)
         db_session.commit()
         flash('Profile edit successful')
-        return redirect(url_for('app_views.index'))
+        # return redirect(url_for('app_views.index'))
     return render_template('update.html', form=form, id=id)
 
 

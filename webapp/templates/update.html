@@ -8,25 +8,25 @@
        
     </div>
     <div class="edit-profile">
-    {% for i in id %}
-        <form method="POST" action="">
+    {% if id != None %}
+        <form method="PUT" action="">
         {{ form.csrf_token }}
-            {{ form.fname.label }} {{ form.fname }}
-            {{ form.lname.label }} {{ form.lname }}
-            {{ form.oname.label }} {{ form.oname }}
-            {{ form.address.label }} {{ form.address }}
-            {{ form.email.label }} {{ form.email }}
-            {{ form.phone.label }} {{ form.phone }}
-            {{ form.mob.label }} {{ form.mob }}
-            {{ form.yob.label }} {{ form.yob }}
-            {{ form.gender.label }} {{ form.gender }}
-            {{ form.bloodGroup.label }} {{ form.bloodGroup }}
-            {{ form.genotype.label }} {{ form.genotype }}
-            {{ form.history.label }} {{ form.history }}
-            {{ form.doctor.label }} {{ form.doctor }}
+            {{ form.fname.label }} {{ form.fname(type="username", value=id.fname) }}
+            {{ form.lname.label }} {{ form.lname(type="username", value=id.lname)  }}
+            {{ form.oname.label }} {{ form.oname(type="username", value=id.oname)  }}
+            {{ form.address.label }} {{ form.address(type="text", value=id.address)  }}
+            {{ form.email.label }} {{ form.email(type='email', value=id.email) }}
+            {{ form.phone.label }} {{ form.phone(type='phone', value=id.phone) }}
+            {{ form.mob.label }} {{ form.mob(type='mob', value=id.mob) }}
+            {{ form.yob.label }} {{ form.yob(type='yob', value=id.yob) }}
+            {{ form.gender.label }} {{ form.gender(type='text', value=id.gender) }}
+            {{ form.bloodGroup.label }} {{ form.bloodGroup(type='text', value=id.bloodGroup) }}
+            {{ form.genotype.label }} {{ form.genotype(type='text', value=id.genotype) }}
+            {{ form.history.label }} {{ form.history(type='text', value=id.history) }}
+            {{ form.doctor.label }} {{ form.doctor(type='text', value=id.doctor) }}
             {{ form.submit }} 
         </form>
-    {% endfor %}
+    {% endif %}
     </div>
 {% endblock %}
 {% block footer %}

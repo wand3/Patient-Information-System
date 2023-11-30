@@ -28,7 +28,7 @@ class Patient(Base, BaseModel):
     lname = Column(String(100), nullable=False)
     oname = Column(String(100), nullable=True)
     address = Column(String(100), nullable=False)
-    email = Column(String(100), unique=True)
+    email = Column(String(100), unique=True, nullable=False)
     phone = Column(Integer, nullable=False)
     mob = Column(Integer, nullable=False)
     yob = Column(Integer, nullable=False)
@@ -46,21 +46,6 @@ class Patient(Base, BaseModel):
     # class initialization of Patient model variables
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-    # def __init__(self, fname, lname, oname, address, email, phone, mob, yob, gender, bloodGroup, genotype, history, doctor):
-    #     self.fname = fname
-    #     self.lname = lname
-    #     self.oname = oname
-    #     self.address = address
-    #     self.email = email
-    #     self.phone = phone
-    #     self.mob = mob
-    #     self.yob = yob
-    #     self.gender = gender
-    #     self.bloodGroup = bloodGroup
-    #     self.genotype = genotype
-    #     self.history = history
-    #     self.doctor = doctor
-    #     super().__init__()
 
 
     def __repr__(self):
