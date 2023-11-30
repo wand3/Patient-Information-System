@@ -3,30 +3,38 @@
 {% block head %} {% endblock %}
 
 {% block content %}
+
+<!-- display flashed messages -->
+{% for message in get_flashed_messages() %}
+<div class="alert alert-warning " style="margin: 15px 0; background-color: transparent; color: rgb(89, 31, 31)">
+    <button type="button" class="close" data-dismiss="alert" style="color: rgb(112, 43, 43)">&times;</button>
+    {{ message }}
+</div>
+{% endfor %}
+
     <div class="last-update">
         <h4>Last Update</h4>
        
     </div>
-    <div class="edit-profile">
-    {% if id != None %}
-        <form method="PUT" action="">
-        {{ form.csrf_token }}
-            {{ form.fname.label }} {{ form.fname(type="username", value=id.fname) }}
-            {{ form.lname.label }} {{ form.lname(type="username", value=id.lname)  }}
-            {{ form.oname.label }} {{ form.oname(type="username", value=id.oname)  }}
-            {{ form.address.label }} {{ form.address(type="text", value=id.address)  }}
-            {{ form.email.label }} {{ form.email(type='email', value=id.email) }}
-            {{ form.phone.label }} {{ form.phone(type='phone', value=id.phone) }}
-            {{ form.mob.label }} {{ form.mob(type='mob', value=id.mob) }}
-            {{ form.yob.label }} {{ form.yob(type='yob', value=id.yob) }}
-            {{ form.gender.label }} {{ form.gender(type='text', value=id.gender) }}
-            {{ form.bloodGroup.label }} {{ form.bloodGroup(type='text', value=id.bloodGroup) }}
-            {{ form.genotype.label }} {{ form.genotype(type='text', value=id.genotype) }}
-            {{ form.history.label }} {{ form.history(type='text', value=id.history) }}
-            {{ form.doctor.label }} {{ form.doctor(type='text', value=id.doctor) }}
-            {{ form.submit }} 
-        </form>
+    <div class="edit-profile"> 
+    {% for i in all %}
+    {% if user_id == i.id %}
+    <form method="POST" action="{{ url_for('app_views.edit_record', user_id=user_id) }}", enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+       
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label">fname</label>
+            
+            <div class="col-sm-10">
+            {{ form.fname(value=i.fname)}}
+            </div>
+            
+        </div>
+       
+       
+    </form>
     {% endif %}
+    {% endfor %}
     </div>
 {% endblock %}
 {% block footer %}

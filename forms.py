@@ -1,7 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField, TelField, IntegerField, EmailField
 from wtforms.validators import DataRequired
-
+from models.patient import Patient
+from config import db_session
 
 class PatientRegForm(FlaskForm):
     fname = StringField( 'First Name', validators=[DataRequired()])
@@ -21,8 +22,9 @@ class PatientRegForm(FlaskForm):
 
 
 class UpdatePatientForm(FlaskForm):
-    fname = StringField( 'First Name', validators=[])
-    lname = StringField( 'Last Name', validators=[])
+    # patient = db_session.get(Patient.id, id)
+    fname = StringField( 'First Name', default=Patient.fname)
+    lname = StringField( 'Last Name', default=Patient.lname)
     oname = StringField( 'Other Name(s)', validators=[])
     address = StringField( 'Address', validators=[])
     email = EmailField( 'Email', validators=[])
