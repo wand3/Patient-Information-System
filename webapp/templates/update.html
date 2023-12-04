@@ -12,24 +12,66 @@
 </div>
 {% endfor %}
 
-    <div class="last-update">
-        <h4>Last Update</h4>
-       
-    </div>
     <div class="edit-profile"> 
     {% for i in all %}
     {% if user_id == i.id %}
+
+    <div class="last-update">
+        <h4>Last Update</h4>
+        {{ i.updated_at }}
+       
+    </div>
     <form method="POST" action="{{ url_for('app_views.edit_record', user_id=user_id) }}", enctype="multipart/form-data">
         {{ form.hidden_tag() }}
-       
-        <div class="row mb-3">
-            <label class="col-sm-2 col-form-label">fname</label>
-            
-            <div class="col-sm-10">
-            {{ form.fname(value=i.fname)}}
-            </div>
-            
+        <div class="form-group">
+            {{ form.fname.label(class="form-label") }}
+            {{ form.fname(class="form-input", value=i.fname, type="username")}}
         </div>
+        <div class="form-group">
+            {{ form.lname.label(class="form-label") }}
+            {{ form.lname(class="form-input", value=i.lname, type="username")}}
+        </div>
+        <div class="form-group">
+            {{ form.oname.label(class="form-label") }}
+            {{ form.oname(class="form-input", value=i.oname, type="username")}}
+        </div>
+        <div class="form-group">
+            {{ form.address.label(class="form-label") }}
+            {{ form.address(class="form-input", value=i.address, type="address") }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-input", value=i.email, type="email") }}
+        </div>
+        <div class="form-group">
+            {{ form.phone.label(class="form-label") }}
+            {{ form.phone(class="form-input", value=i.phone, type="tel") }}
+        </div>
+        <div class="form-group">
+            {{ form.mob.label(class="form-label") }}
+            {{ form.mob(class="form-input", value=i.mob, type="date-month") }}
+        </div>
+        <div class="form-group">
+            {{ form.yob.label(class="form-label") }}
+            {{ form.yob(class="form-input", value=i.yob, type="date-year") }}
+        </div>
+        <div class="form-group">
+            {{ form.gender.label(class="form-label") }}
+            {{ form.gender(class="form-input", value=i.gender, type="text") }}
+        </div>
+        <div class="form-group">
+            {{ form.doctor.label(class="form-label") }}
+            {{ form.doctor(class="form-input", value=i.doctor, type="date-year") }}
+        </div>
+        <div class="form-group">
+            {{ form.bloodgroup.label(class="form-label") }}
+            {{ form.bloodgroup(class="form-input", value=i.bloodgroup, type="date-year") }}
+        </div>
+        <div class="form-group">
+            {{ form.submit.label(class="form-label") }}
+            {{ form.submit() }}
+        </div>
+        
        
        
     </form>
