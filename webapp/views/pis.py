@@ -27,6 +27,15 @@ def patient_profile(id):
     return render_template("patient_profile.html", user=user)
 
 
+# Delete patient record route
+@app_views.route('/delete/<int:id>', methods=['GET', 'POST'], strict_slashes=False)
+def delete_record(id):
+    user = db_session.query(Patient).get(id)
+    db_session.delete(user)
+    db_session.commit()
+    flash("Patient record succesfully deleted")
+    return redirect(url_for("app_views.index", id=user.id))
+
 # Patient Registeration route
 @app_views.route('/register', methods=['GET', 'POST'], strict_slashes=False)
 def register():
@@ -92,7 +101,7 @@ def edit_record(user_id):
         user.updated_at=datetime.utcnow()
         db_session.commit()
         flash('Profile edit successful')
-        # return redirect(url_for('app_views.index'))
+        return redirect(url_for('app_views.patient_profile', id=user.id))
     return render_template('update.html', form=form, user_id=user_id, all=all, user=user)
 
 

@@ -13,6 +13,10 @@
     
         
     <h3> othernames: {{user.email}}  lastname: {{user.lname}} onale:  {{user.oname}}</h3>
+
+    <div class="delete-patient">
+        <button><a href="{{ url_for('app_views.delete_record', id=user.id) }}">Delete Record</a>   </button>
+    </div>
     
 
 {% endblock %}
