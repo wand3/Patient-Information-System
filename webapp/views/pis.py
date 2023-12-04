@@ -15,6 +15,18 @@ def index():
     return render_template("index.html", all=all)
 
 
+# Patient profile route
+@app_views.route('/patient/<int:id>', methods=["GET"], strict_slashes=False)
+def patient_profile(id):
+        
+    all = db_session.query(Patient)
+    user = db_session.query(Patient).get(id)
+    if user not in all:
+        flash("Patient has no record consider registering")
+        # return redirect(url_for("app_views.index"))
+    return render_template("patient_profile.html", user=user)
+
+
 # Patient Registeration route
 @app_views.route('/register', methods=['GET', 'POST'], strict_slashes=False)
 def register():
@@ -82,12 +94,6 @@ def edit_record(user_id):
         flash('Profile edit successful')
         # return redirect(url_for('app_views.index'))
     return render_template('update.html', form=form, user_id=user_id, all=all, user=user)
-
-
-
-
-
-
 
 
 # delete patient record
