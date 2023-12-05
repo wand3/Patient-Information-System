@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-import unittest
 from flask import current_app
-from webapp import db, create_app
-# from config import TestConfig
+import unittest
+from webapp import create_app
+from config import TestConfig, db_session, engine
+from models.base_model import Base 
 
 
 class BasicTestCase(unittest.TestCase):
@@ -11,14 +12,14 @@ class BasicTestCase(unittest.TestCase):
     in config file (TestConfig)
     """
     def setUp(self):
-        self.app = create_app('config.TestConfig')
+        self.app = create_app(TestConfig)
         self.app_context = self.app.app_context()
         self.app_context.push()
-        db.create_all()
+        Base.metadata.create_all(bind=engine)
 
     def tearDown(self):
-        db.session.remove()
-        db.drop_all()
+        db_session.remove()
+        Base.metadata.drop_all(bind=engine)
         self.app_context.pop()
 
     def test_app_exists(self):
