@@ -79,11 +79,7 @@ def edit_record(user_id):
         load patient profile to be editted by id
     """ 
     all = db_session.query(Patient)
-    # user = db_session.query(Patient).filter(Patient.id == "id").first()
     user = db_session.query(Patient).get(user_id)
-
-    # id = db_session.query(Patient)
-    
     form = UpdatePatientForm()
     if form.validate_on_submit():
         user.fname=form.fname.data 
