@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 import unittest
 from datetime import datetime
-from webapp import create_app
-from config import db_session
+from config import db_session, TestConfig
 from models.patient import Patient
+import webapp
 
 class PatientModelTestCase(unittest.TestCase):
     """
@@ -19,7 +19,7 @@ class PatientModelTestCase(unittest.TestCase):
         
     def setUp(self) -> None:
         """initializes new city for testing"""
-        self.app = create_app('TestConfig')
+        self.app = webapp.create_app('TestConfig')
         self.app_context = self.app.app_context()
         self.app_context.push()
         db_session.create_all()
@@ -28,3 +28,7 @@ class PatientModelTestCase(unittest.TestCase):
         db_session.remove()
         db_session.drop_all()
         self.app_context.pop()
+
+
+if __name__ == "__main__":
+    unittest.main()
