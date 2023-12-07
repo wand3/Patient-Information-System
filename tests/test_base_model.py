@@ -26,6 +26,12 @@ class TestBaseModel(unittest.TestCase):
     def test_instantiation(self):
         """checks if BaseModel is properly instantiated"""
         self.assertIsInstance(self.model, BaseModel)
+        """check created_at attribute of base model"""
+        actual = type(self.model.created_at)
+        print("\n Date created {}".format(self.model.created_at))
+        expected = type(datetime.now())
+        print("\n current date {}".format(datetime.now()))
+        self.assertEqual(expected, actual)
 
 
 if __name__ == '__main__':
