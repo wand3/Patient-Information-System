@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField, TelField, IntegerField, EmailField
+from wtforms import StringField, SubmitField, TextAreaField, TelField, IntegerField, EmailField, SelectField
 from wtforms.validators import DataRequired
 from models.patient import Patient
 from config import db_session
@@ -13,9 +13,9 @@ class PatientRegForm(FlaskForm):
     phone  = TelField( 'Phone Number', validators=[DataRequired()])
     mob = IntegerField( 'Month', validators=[DataRequired()])
     yob = IntegerField( 'Year', validators=[DataRequired()])
-    gender = StringField( 'Gender', validators=[DataRequired()])
-    bloodgroup = StringField( 'Blood Group', validators=[DataRequired()])
-    genotype = StringField( 'Genotype', validators=[DataRequired()])
+    gender = SelectField('Gender', choices=['','Female', 'Male'], coerce=str)
+    bloodgroup = SelectField( 'Blood Group', choices=['', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'], coerce=str)
+    genotype = SelectField( 'Genotype', choices=['', 'AA', 'AS', 'SS'], coerce=str)
     doctor = StringField('Doctor')
     submit = SubmitField('Register')
 
@@ -30,8 +30,8 @@ class UpdatePatientForm(FlaskForm):
     phone  = TelField( 'Phone Number', validators=[])
     mob = IntegerField( 'Month', validators=[])
     yob = IntegerField( 'Year', validators=[])
-    gender = StringField( 'Gender', validators=[])
-    bloodgroup = StringField( 'Blood Group', validators=[])
-    genotype = StringField( 'Genotype', validators=[])
+    gender = SelectField('Gender', choices=['Female', 'Male'], coerce=str)
+    bloodgroup = SelectField( 'Blood Group', choices=['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'], coerce=str)
+    genotype = SelectField( 'Genotype', choices=['AA', 'AS', 'SS'], coerce=str)
     doctor = StringField('Doctor')
     submit = SubmitField('Update')

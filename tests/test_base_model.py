@@ -28,10 +28,13 @@ class TestBaseModel(unittest.TestCase):
         self.assertIsInstance(self.model, BaseModel)
         """check created_at attribute of base model"""
         actual = type(self.model.created_at)
+        print("\n Id {}".format(self.model.id))
         print("\n Date created {}".format(self.model.created_at))
         expected = type(datetime.now())
         print("\n current date {}".format(datetime.now()))
         self.assertEqual(expected, actual)
+
+    
 
 
 if __name__ == '__main__':

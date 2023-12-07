@@ -59,13 +59,18 @@
             {{ form.gender(class="form-input", value=i.gender, type="text") }}
         </div>
         <div class="form-group">
-            {{ form.doctor.label(class="form-label") }}
-            {{ form.doctor(class="form-input", value=i.doctor, type="date-year") }}
-        </div>
-        <div class="form-group">
             {{ form.bloodgroup.label(class="form-label") }}
             {{ form.bloodgroup(class="form-input", value=i.bloodgroup, type="date-year") }}
         </div>
+        <div class="form-group">
+            {{ form.genotype.label(class="form-label") }}
+            {{ form.genotype(class="form-input", value=i.bloodgroup, type="date-year") }}
+        </div>
+        <div class="form-group">
+            {{ form.doctor.label(class="form-label") }}
+            {{ form.doctor(class="form-input", value=i.doctor, type="date-year") }}
+        </div>
+        
         <div class="form-group">
             {{ form.submit.label(class="form-label") }}
             {{ form.submit() }}
