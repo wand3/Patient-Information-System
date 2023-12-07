@@ -16,12 +16,11 @@ class PatientRegForm(FlaskForm):
     gender = SelectField('Gender', choices=['','Female', 'Male'], coerce=str)
     bloodgroup = SelectField( 'Blood Group', choices=['', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'], coerce=str)
     genotype = SelectField( 'Genotype', choices=['', 'AA', 'AS', 'SS'], coerce=str)
-    doctor = StringField('Doctor')
+    marital_status = SelectField('Marital Status', choices=['Single', 'Married', 'Widowed', 'Divorced', 'Separated'])
     submit = SubmitField('Register')
 
 
 class UpdatePatientForm(FlaskForm):
-    # patient = db_session.get(Patient.id, id)
     fname = StringField( 'First Name', default=Patient.fname)
     lname = StringField( 'Last Name', default=Patient.lname)
     oname = StringField( 'Other Name(s)', validators=[])
@@ -30,8 +29,8 @@ class UpdatePatientForm(FlaskForm):
     phone  = TelField( 'Phone Number', validators=[])
     mob = IntegerField( 'Month', validators=[])
     yob = IntegerField( 'Year', validators=[])
-    gender = SelectField('Gender', choices=['Female', 'Male'], coerce=str)
-    bloodgroup = SelectField( 'Blood Group', choices=['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'], coerce=str)
-    genotype = SelectField( 'Genotype', choices=['AA', 'AS', 'SS'], coerce=str)
-    doctor = StringField('Doctor')
+    gender = SelectField('Gender', choices=['Female', 'Male'])
+    bloodgroup = SelectField( 'Blood Group', choices=['A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'])
+    genotype = SelectField( 'Genotype', choices=['AA', 'AS', "SS"])
+    marital_status = SelectField('Marital Status', choices=['Single', 'Married', 'Widowed', 'Divorced', 'Separated'])
     submit = SubmitField('Update')

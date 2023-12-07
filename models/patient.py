@@ -49,7 +49,7 @@ class Patient(Base, BaseModel):
     bloodgroup = Column(String(13))
     genotype = Column(String(12))
     history = Column(Text())
-    doctor = Column(String(19))
+    marital_status = Column(String(10))
 
 
 #     establish database relationship

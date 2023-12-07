@@ -59,7 +59,7 @@ def register():
                         gender=form.gender.data,
                         bloodgroup=form.bloodgroup.data,
                         genotype=form.genotype.data,
-                        doctor=form.doctor.data,
+                        marital_status=form.marital_status.data,
                         )
         db_session.add(new_patient)
         db_session.commit()
@@ -81,6 +81,10 @@ def edit_record(user_id):
     all = db_session.query(Patient)
     user = db_session.query(Patient).get(user_id)
     form = UpdatePatientForm()
+
+    default_genotype = str(user.genotype)
+    form.genotype.default = default_genotype
+    form.process_data()
     if form.validate_on_submit():
         user.fname=form.fname.data 
         user.lname=form.lname.data
@@ -93,7 +97,7 @@ def edit_record(user_id):
         user.gender=form.gender.data
         user.bloodgroup=form.bloodgroup.data
         user.genotype=form.genotype.data
-        user.doctor=form.doctor.data
+        user.marital_status=form.marital_status.data
         user.updated_at=datetime.utcnow()
         db_session.commit()
         flash('Profile edit successful')
