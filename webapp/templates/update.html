@@ -47,12 +47,8 @@
             {{ form.phone(class="form-input", value=i.phone, type="tel") }}
         </div>
         <div class="form-group">
-            {{ form.mob.label(class="form-label") }}
-            {{ form.mob(class="form-input", value=i.mob, type="date-month") }}
-        </div>
-        <div class="form-group">
-            {{ form.yob.label(class="form-label") }}
-            {{ form.yob(class="form-input", value=i.yob, type="date-year") }}
+            {{ form.dob.label(class="form-label") }}
+            {{ form.dob(class="form-input", value=i.dob, type="date") }}
         </div>
         <div class="form-group">
             {{ form.gender.label(class="form-label") }}

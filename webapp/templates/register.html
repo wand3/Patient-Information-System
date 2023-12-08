@@ -7,25 +7,61 @@
   </style>
 {% endblock %}
 {% block content %}
-  <div class="regform">
-    <form method="POST" action="">
-        {{ form.csrf_token }}
-        {{ form.fname.label }} {{ form.fname }}
-        {{ form.lname.label }} {{ form.lname }}
-        {{ form.oname.label }} {{ form.oname }}
-        {{ form.address.label }} {{ form.address }}
-        {{ form.email.label }} {{ form.email }}
-        {{ form.phone.label }} {{ form.phone }}
-        {{ form.mob.label }} {{ form.mob }}
-        {{ form.yob.label }} {{ form.yob }}
-        {{ form.gender.label }} {{ form.gender }}
-        {{ form.bloodgroup.label }} {{ form.bloodgroup }}
-        {{ form.genotype.label }} {{ form.genotype }}
-        {{ form.marital_status.label }} {{ form.marital_status }}
-        {{ form.submit }}
+  <!-- <div class="regform"> -->
+    <form method="POST" action="{{ url_for('app_views.register')}}", enctype="multipart/form-data">
+        {{ form.hidden_tag() }}
+        <div class="form-group">
+            {{ form.fname.label(class="form-label") }}
+            {{ form.fname(class="form-input", type="username")}}
+        </div>
+        <div class="form-group">
+            {{ form.lname.label(class="form-label") }}
+            {{ form.lname(class="form-input", type="username")}}
+        </div>
+        <div class="form-group">
+            {{ form.oname.label(class="form-label") }}
+            {{ form.oname(class="form-input", type="username")}}
+        </div>
+        <div class="form-group">
+            {{ form.address.label(class="form-label") }}
+            {{ form.address(class="form-input", type="address") }}
+        </div>
+        <div class="form-group">
+            {{ form.email.label(class="form-label") }}
+            {{ form.email(class="form-input", type="email") }}
+        </div>
+        <div class="form-group">
+            {{ form.phone.label(class="form-label") }}
+            {{ form.phone(class="form-input", type="tel") }}
+        </div>
+        <div class="form-group">
+            {{ form.dob.label(class="form-label") }}
+            {{ form.dob(class="form-input", type="date") }}
+        </div>
+        <div class="form-group">
+            {{ form.gender.label(class="form-label") }}
+            {{ form.gender(class="form-input") }}
+        </div>
+        <div class="form-group">
+            {{ form.bloodgroup.label(class="form-label") }}
+            {{ form.bloodgroup(class="form-input") }}
+        </div>
+        <div class="form-group">
+            {{ form.genotype.label(class="form-label") }}
+            {{ form.genotype(class="form-input") }}
+        </div>
+        <div class="form-group">
+            {{ form.marital_status.label(class="form-label") }}
+            {{ form.marital_status(class="form-input") }}
+        </div>
+        
+        <div class="form-group">
+            {{ form.submit.label(class="form-label") }}
+            {{ form.submit() }}
+        </div>
     </form>
 
-  </div>
+  <!-- </div> -->
 {% endblock %}
 {% block footer %}
 {% endblock %}

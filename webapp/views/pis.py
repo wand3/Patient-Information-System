@@ -54,8 +54,7 @@ def register():
                         address=form.address.data,
                         email=form.email.data,
                         phone=form.phone.data,
-                        mob=form.mob.data,
-                        yob=form.yob.data,
+                        dob=form.dob.data,
                         gender=form.gender.data,
                         bloodgroup=form.bloodgroup.data,
                         genotype=form.genotype.data,
@@ -82,9 +81,17 @@ def edit_record(user_id):
     user = db_session.query(Patient).get(user_id)
     form = UpdatePatientForm()
 
-    default_genotype = str(user.genotype)
-    form.genotype.default = default_genotype
-    form.process_data()
+    # default_genotype = user.genotype
+    form.genotype.default = user.genotype
+    form.dob.default = user.dob
+    form.gender.default = user.gender
+    form.bloodgroup.default = user.bloodgroup
+    form.email.default = user.email
+    form.oname.default = user.oname
+    form.phone.default = user.phone
+    # form.process()
+    # form.process(default_genotype)
+
     if form.validate_on_submit():
         user.fname=form.fname.data 
         user.lname=form.lname.data
@@ -92,8 +99,7 @@ def edit_record(user_id):
         user.address=form.address.data
         user.email=form.email.data
         user.phone=form.phone.data
-        user.mob=form.mob.data
-        user.yob=form.yob.data
+        user.dob=form.dob.data
         user.gender=form.gender.data
         user.bloodgroup=form.bloodgroup.data
         user.genotype=form.genotype.data
