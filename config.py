@@ -23,7 +23,7 @@ class Config:
  
 class DevConfig(Config):
     DEBUG = True
-    
+    PIS_ADMIN = os.environ.get('PIS_ADMIN') or "administrator@gmail.com"
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, '{}.db').format(os.environ.get('WEBAPP_ENV'))
 
     global engine
