@@ -1,8 +1,30 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, TextAreaField, TelField, IntegerField, EmailField, SelectField, DateField
-from wtforms.validators import DataRequired
+from wtforms import StringField, SubmitField, TextAreaField, TelField, IntegerField, EmailField, SelectField, DateField, PasswordField, BooleanField
+from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo
 from models.patient import Patient
+from models.user import Role, User
 from config import db_session
+
+
+class SignupForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Length(1, 40), Email()])
+    username = StringField('Username', validators=[DataRequired(), Length(1, 40), 
+                                                   Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
+               'Usernames must have only letters, numbers, dots or '
+               'underscores')])
+    password = PasswordField('Password', validators=[
+        DataRequired(), EqualTo('password2', message='Passwords must match.')])
+    password2 = PasswordField('Confirm password', validators=[DataRequired()])
+    submit = SubmitField('Register')
+
+
+class SigninForm(FlaskForm):
+    email = StringField('Email', validators=[DataRequired(), Length(1, 64),
+                                             Email()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    remember_me = BooleanField('Keep me logged in')
+    submit = SubmitField('Log In')
+
 
 class PatientRegForm(FlaskForm):
     fname = StringField( 'First Name', validators=[DataRequired()])

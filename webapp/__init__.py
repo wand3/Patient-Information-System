@@ -1,6 +1,10 @@
 from flask import Flask
 from webapp.views import app_views
+from webapp.auth import auth_views
+from flask_login import LoginManager
 
+login_manager = LoginManager()
+login_manager.login_view = 'auth_views.signin'
 
 def create_app(object_name):
     """
@@ -15,8 +19,10 @@ def create_app(object_name):
     import config
     app.config.from_object(object_name)
 
+    login_manager.init_app(app)
     
     app.register_blueprint(app_views, url_prefix='/')
+    app.register_blueprint(auth_views, url_prefix='/auth')
 
 
     return app

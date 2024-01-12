@@ -2,12 +2,14 @@
 """
 Patient Model: create a SQLAlchemy model Patient
 """
+from webapp import login_manager
 from flask import current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.orm import relationship
 from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
 from datetime import datetime
 from models.base_model import BaseModel, Base
+from config import db_session
 
 
 class Role(Base, BaseModel):
@@ -64,3 +66,7 @@ class User(Base, BaseModel):
     def __repr__(self):
         return '<User %r>' % self.username
 
+
+@login_manager.user_loader
+def load_user(id):
+    return db_session.get(User, int(id))
