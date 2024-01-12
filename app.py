@@ -9,6 +9,7 @@ import os
 from models.base_model import BaseModel
 from models.history import History
 from models.patient import Patient
+from models.user import User, Role
 
 env = os.environ.get('WEBAPP_ENV')
 if env == None:
@@ -24,7 +25,7 @@ else:
 """
 @app.shell_context_processor
 def make_shell_context():
-    return dict(BaseModel=BaseModel, Patient=Patient, History=History) 
+    return dict(BaseModel=BaseModel, Patient=Patient, History=History, User=User, Role=Role) 
 
 
 
