@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """
-Patient Model: create a SQLAlchemy model Patient
+Patient Model: create a SQLAlchemy model User
 """
-from webapp import login_manager
 from flask import current_app
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.orm import relationship
@@ -10,6 +9,8 @@ from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
 from datetime import datetime
 from models.base_model import BaseModel, Base
 from config import db_session
+from webapp import login_manager
+
 
 
 class Role(Base, BaseModel):
