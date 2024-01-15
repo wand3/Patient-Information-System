@@ -18,7 +18,7 @@ class PatientModelTestCase(unittest.TestCase):
         print('.................................\n\n')
         
     def setUp(self) -> None:
-        """initializes new city for testing"""
+        """initializes new patient for testing"""
         self.app = webapp.create_app('TestConfig')
         self.app_context = self.app.app_context()
         self.app_context.push()
