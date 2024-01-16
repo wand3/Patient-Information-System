@@ -24,13 +24,14 @@ def create_app(object_name):
     app.config.from_object(object_name)
 
     login_manager.init_app(app)
-    
+    @login_manager.user_loader
+    def load_user(id):
+        return db_session.get(User, int(id))
+        
     app.register_blueprint(app_views, url_prefix='/')
     app.register_blueprint(auth_views, url_prefix='/auth')
 
 
     return app
 
-@login_manager.user_loader
-def load_user(id):
-    return db_session.get(User, int(id))
+

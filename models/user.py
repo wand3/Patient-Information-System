@@ -81,5 +81,11 @@ class User(Base, BaseModel):
                 return True
         return False
     
+    @property
+    def is_active(self):
+        return True
+    
     def __repr__(self):
         return '<User %r>' % self.username
+    
+
