@@ -31,7 +31,7 @@ class DevConfig(Config):
     global db_session
     db_session = scoped_session(sessionmaker(autoflush=False, autocommit=False, bind=engine)) 
     # Base.metadata.drop_all(engine)
-    Base.metadata.create_all(bind=engine)
+    # Base.metadata.create_all(bind=engine)
     
 
 class TestConfig(Config):

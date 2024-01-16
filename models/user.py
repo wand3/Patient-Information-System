@@ -4,13 +4,18 @@ Patient Model: create a SQLAlchemy model User
 """
 from flask import current_app
 from werkzeug.security import generate_password_hash, check_password_hash
-from sqlalchemy.orm import relationship
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey
+from sqlalchemy.orm import relationship, backref
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Table
 from datetime import datetime
 from models.base_model import BaseModel, Base
 from config import db_session
-from webapp import login_manager
 
+roles = Table(
+       'role_users',
+       Base.metadata,
+       Column('user_id', Integer, ForeignKey('users.id')),
+       Column('role_id', Integer, ForeignKey('roles.id')),
+   )
 
 
 class Role(Base, BaseModel):
@@ -18,13 +23,13 @@ class Role(Base, BaseModel):
     Attributes:
     * id, integer primary key
     * name, non-nullable string
-    * user, non-nullable string
     """
     __tablename__ = 'roles'
     id = Column(Integer, primary_key=True)
     name = Column(String(64), unique=True)
-    users = relationship('User', backref='role', lazy='dynamic')
 
+    def __init__(self, name):
+           self.name = name
 
     def __repr__(self):
         return '<Role %r>' % self.name
@@ -42,11 +47,17 @@ class User(Base, BaseModel):
     id = Column(Integer, primary_key=True)
     email = Column(String(64), unique=True, index=True)
     username = Column(String(64), unique=True, index=True)
-    role_id = Column(Integer, ForeignKey('roles.id'))
     password_hash = Column(String(128))
+    roles = relationship("Role", secondary=roles)
 
-    def __init__(self, **kwargs):
-        super(User, self).__init__(**kwargs)
+
+    def __init__(self, email, username="" ):
+        self.email = email
+        # super(User, self).__init__(**kwargs)
+        # def __init__(self, username=""):
+        default = db_session.query(Role).filter_by(name="default").one()
+        self.roles.append(default)
+        self.username = username
         # if self.role is None:
         #     if self.email == current_app.config['PIS_ADMIN']:
         #         self.role = Role.query.filter_by(name='administrator').first()
@@ -64,10 +75,11 @@ class User(Base, BaseModel):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
     
+    def has_role(self, name):
+        for role in self.roles:
+            if role.name == name:
+                return True
+        return False
+    
     def __repr__(self):
         return '<User %r>' % self.username
-
-
-@login_manager.user_loader
-def load_user(id):
-    return db_session.get(User, int(id))

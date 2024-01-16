@@ -2,9 +2,13 @@ from flask import Flask
 from webapp.views import app_views
 from webapp.auth import auth_views
 from flask_login import LoginManager
+from config import db_session
+from models.user import User
+
 
 login_manager = LoginManager()
 login_manager.login_view = 'auth_views.signin'
+
 
 def create_app(object_name):
     """
@@ -26,3 +30,7 @@ def create_app(object_name):
 
 
     return app
+
+@login_manager.user_loader
+def load_user(id):
+    return db_session.get(User, int(id))
