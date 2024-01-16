@@ -30,6 +30,11 @@ class UserModelTestCase(unittest.TestCase):
         u = User(password='one')
         self.assertTrue(u.password_hash is not None)
 
+    def test_verify_password_hash(self):
+        u = User(password='one')
+        self.assertTrue(u.verify_password('one'))
+        self.assertFalse(u.verify_password('yne'))
+
     
 
 
