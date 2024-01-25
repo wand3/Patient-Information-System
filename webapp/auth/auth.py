@@ -6,7 +6,7 @@ from config import db_session
 from flask_login import current_user
 from datetime import datetime
 # from ..auth import has_role
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, login_required
 from models.user import User
 
 @auth_views.route('/signup', methods=['GET', 'POST'], strict_slashes=False)
@@ -49,3 +49,11 @@ def signin():
         flash('Invalid username or password.')
 
     return render_template('auth/signin.html', form=form, remember=True)
+
+
+@auth_views.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    flash('You have been logged out.')
+    return redirect(url_for('app_views.index'))
