@@ -27,9 +27,9 @@ class DevConfig(Config):
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, '{}.db').format(os.environ.get('WEBAPP_ENV'))
 
     global engine
-    engine = create_engine(SQLALCHEMY_DATABASE_URI, pool_pre_ping=True, echo=True)
+    engine = create_engine(SQLALCHEMY_DATABASE_URI)
     global db_session
-    db_session = scoped_session(sessionmaker(autoflush=False, autocommit=False, bind=engine)) 
+    db_session = scoped_session(sessionmaker(autoflush=True, autocommit=False, bind=engine)) 
     # Base.metadata.drop_all(engine)
     # Base.metadata.create_all(bind=engine)
     
@@ -43,7 +43,7 @@ class TestConfig(Config):
     engine = create_engine(SQLALCHEMY_DATABASE_URI, pool_pre_ping=True, echo=True)
     global db_session
     db_session = scoped_session(sessionmaker(autoflush=False, autocommit=False, bind=engine)) 
-    # Base.metadata.drop_all(engine)
+    Base.metadata.drop_all(engine)
     Base.metadata.create_all(bind=engine)
 
 class ProdConfig(Config):

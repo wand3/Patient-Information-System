@@ -1,13 +1,5 @@
 from flask import Flask
 from webapp.views import app_views
-from webapp.auth import auth_views
-from flask_login import LoginManager
-from config import db_session
-from models.user import User
-
-
-login_manager = LoginManager()
-login_manager.login_view = 'auth_views.signin'
 
 
 def create_app(object_name):
@@ -22,16 +14,12 @@ def create_app(object_name):
     app = Flask(__name__)
     import config
     app.config.from_object(object_name)
-
-    login_manager.init_app(app)
-    @login_manager.user_loader
-    def load_user(id):
-        return db_session.get(User, int(id))
         
     app.register_blueprint(app_views, url_prefix='/')
-    app.register_blueprint(auth_views, url_prefix='/auth')
+
+    from webapp.auth import create_module as auth_create_module
+    auth_create_module(app)
+
 
 
     return app
-
-

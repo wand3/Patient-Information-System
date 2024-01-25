@@ -10,6 +10,7 @@ from datetime import datetime
 from models.base_model import BaseModel, Base
 from config import db_session
 
+
 roles = Table(
        'role_users',
        Base.metadata,
@@ -68,8 +69,7 @@ class User(Base, BaseModel):
     def password(self):
         raise AttributeError('password is not a readable attribute')
 
-    @password.setter
-    def password(self, password):
+    def set_password(self, password):
         self.password_hash = generate_password_hash(password)
 
     def verify_password(self, password):
@@ -85,7 +85,9 @@ class User(Base, BaseModel):
     def is_active(self):
         return True
     
+    #fixes user signin route not redirecting
+    def get_id(self):
+        return (self.id)
+    
     def __repr__(self):
         return '<User %r>' % self.username
-    
-

@@ -17,6 +17,8 @@
     
 
     <h1>PIS home page</h1>
+    <br>
+    <h4>Welcome {{ current_user.username}}</h4>
     {% for i in all %}
         <h3>{{i.id}}) othernames: {{i.email}}  lastname: {{i.lname}} onale:  {{i.oname}} Genotype: {{i.genotype}}</h3>
     {% endfor %}
