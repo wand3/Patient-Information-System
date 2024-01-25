@@ -28,7 +28,7 @@ def signup():
     return render_template('auth/signup.html', form=form)
 
 
-@auth_views.route('/signin', methods=['GET', 'POST'])
+@auth_views.route('/signin', methods=['GET', 'POST'], strict_slashes=False)
 def signin():
     form = SigninForm()        
     user = db_session.query(User).filter_by(email=form.email.data).first()
@@ -51,7 +51,7 @@ def signin():
     return render_template('auth/signin.html', form=form, remember=True)
 
 
-@auth_views.route('/logout')
+@auth_views.route('/logout', strict_slashes=False)
 @login_required
 def logout():
     logout_user()

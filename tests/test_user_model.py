@@ -20,7 +20,7 @@ class UserModelTestCase(unittest.TestCase):
         print('.................................\n\n')
         
     def setUp(self) -> None:
-        self.app = create_app(TestConfig)
+        self.app = create_app('TestConfig')
         self.app_context = self.app.app_context()
         self.app_context.push()
         # db_session.drop_all()
@@ -34,6 +34,11 @@ class UserModelTestCase(unittest.TestCase):
         u = User(password='one')
         self.assertTrue(u.verify_password('one'))
         self.assertFalse(u.verify_password('yne'))
+
+    def test_password_salts_are_random(self):
+        u = User(password='bat')
+        u2 = User(password='bat')
+        self.assertTrue(u.password_hash != u2.password_hash)
 
     
 

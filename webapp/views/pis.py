@@ -7,6 +7,7 @@ from forms import PatientRegForm, UpdatePatientForm
 from config import db_session
 from flask_login import current_user
 from datetime import datetime
+from webapp.auth import has_role
 
 
 @app_views.route('/', methods=['GET'], strict_slashes=False)
@@ -37,6 +38,7 @@ def delete_record(id):
     return redirect(url_for("app_views.index", id=user.id))
 
 # Patient Registeration route
+@has_role('')
 @app_views.route('/register', methods=['GET', 'POST'], strict_slashes=False)
 def register():
     form = PatientRegForm(request.form)
