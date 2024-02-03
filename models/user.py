@@ -9,6 +9,7 @@ from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Tabl
 from datetime import datetime
 from models.base_model import BaseModel, Base
 from config import db_session
+from flask_login import AnonymousUserMixin
 
 
 roles = Table(
@@ -24,6 +25,8 @@ class Role(Base, BaseModel):
     Attributes:
     * id, integer primary key
     * name, non-nullable string
+
+    - roles available = [<Role 'default'>, <Role 'doctor'>, <Role 'record_officer'>, <Role 'administrator'>]
     """
     __tablename__ = 'roles'
     id = Column(Integer, primary_key=True)
@@ -85,9 +88,32 @@ class User(Base, BaseModel):
     def is_active(self):
         return True
     
-    #fixes user signin route not redirecting
+    @property
+    def is_authenticated(self):
+        return True
+        # if self.user_logged_in:
+        #     return True
+    
+    @property
+    def is_anonymous(self):
+        return False
+        
+    
+    #fixes user signin route not redirecting if you're not using the UserMixin class
     def get_id(self):
         return (self.id)
     
     def __repr__(self):
         return '<User %r>' % self.username
+
+  
+class AnonymousUser(AnonymousUserMixin):
+    def can(self, permissions):
+        return False
+
+    def is_administrator(self):
+        return False
+    
+    @property
+    def is_anonymous(self):
+        return True

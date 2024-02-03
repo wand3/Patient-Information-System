@@ -27,10 +27,18 @@
             <a href="{{ url_for('auth_views.logout') }}"><button type="button" class="btn button primary-button text-uppercase">Logout</button></a>
         {% else %}
 
-            <a href="{{ url_for('auth_views.signup') }}"><button type="button" class="btn button secondary-button mr-4 text-uppercase" >Open An Account</button></a>
+            <a href="{{ url_for('auth_views.signup') }}"><button type="button" class="btn button secondary-button mr-4 text-uppercase" >Sign up</button></a>
             <a href="{{ url_for('auth_views.signin') }}"><button type="button" class="btn button primary-button text-uppercase">Sign in</button></a>
 
         {% endif %}
+
+
+        {% if current_user.is_anonymous == True %}
+            <!-- <a href="{{ url_for('app_views.register') }}"><button type="button" class="btn button secondary-button mr-4 text-uppercase" >New Patient</button></a> -->
+        {% elif current_user.is_anonymous == False and ( current_user.has_role(name='administrator') or current_user.has_role(name='record_officer') )%}
+            <a href="{{ url_for('app_views.register') }}"><button type="button" class="btn button secondary-button mr-4 text-uppercase" >New Patient</button></a>
+        {% endif %}
+
     </div>
 {% endblock %}
 

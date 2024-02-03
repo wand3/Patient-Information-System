@@ -3,10 +3,9 @@
 """
 import functools
 from flask import Blueprint, abort
-from models.user import User
+from models.user import User, AnonymousUser
 from config import db_session
 from flask_login import LoginManager, current_user
-
 # create blueprint for auth views 
 auth_views = Blueprint('auth_views', __name__, template_folder='../templates/auth',
     url_prefix="/auth")
@@ -17,6 +16,7 @@ login_manager.login_view = 'signin'
 login_manager.session_protection = "basic"
 login_manager.login_message = "Please login to access this page"
 login_manager.login_message_category = "info"
+login_manager.anonymous_user = AnonymousUser
 
 
 def create_module(app, **kwargs):

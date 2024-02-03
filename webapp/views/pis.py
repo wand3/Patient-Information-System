@@ -5,7 +5,7 @@ from models.patient import Patient
 from forms import PatientRegForm, UpdatePatientForm
 # from sqlalchemy import update
 from config import db_session
-from flask_login import current_user
+from flask_login import current_user, login_required
 from datetime import datetime
 from webapp.auth import has_role
 
@@ -17,6 +17,7 @@ def index():
 
 
 # Patient profile route
+@login_required
 @app_views.route('/patient/<int:id>', methods=["GET"], strict_slashes=False)
 def patient_profile(id):
         
@@ -29,6 +30,7 @@ def patient_profile(id):
 
 
 # Delete patient record route
+@login_required
 @app_views.route('/delete/<int:id>', methods=['GET', 'POST'], strict_slashes=False)
 def delete_record(id):
     user = db_session.query(Patient).get(id)
@@ -38,7 +40,8 @@ def delete_record(id):
     return redirect(url_for("app_views.index", id=user.id))
 
 # Patient Registeration route
-@has_role('')
+@login_required
+@has_role('administrator')
 @app_views.route('/register', methods=['GET', 'POST'], strict_slashes=False)
 def register():
     form = PatientRegForm(request.form)
@@ -74,6 +77,7 @@ def register():
 
 
 # update patient information
+@login_required
 @app_views.route('/edit_record/<int:user_id>', methods=["GET", "POST"], strict_slashes=False)
 def edit_record(user_id):
     """
