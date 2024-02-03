@@ -52,18 +52,18 @@ class User(Base, BaseModel):
     roles = relationship("Role", secondary=roles)
 
 
-    def __init__(self, email, username="" ):
+    def __init__(self, email, username=""):
         self.email = email
-        # super(User, self).__init__(**kwargs)
-        # def __init__(self, username=""):
         default = db_session.query(Role).filter_by(name="default").one()
-        self.roles.append(default)
         self.username = username
-        # if self.role is None:
-        #     if self.email == current_app.config['PIS_ADMIN']:
-        #         self.role = Role.query.filter_by(name='administrator').first()
-        #     if self.role is None:
-        #         self.role = Role.query.filter_by(default=True).first()
+        self.roles.append(default)
+
+        # add administrator
+        if self.email == current_app.config['PIS_ADMIN']:
+            admin = Role(name='administrator')
+            db_session.add(admin)
+            db_session.commit()
+            self.roles.append(admin)
 
     @property
     def password(self):

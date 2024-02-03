@@ -16,6 +16,7 @@ def signup():
         new_user = User(
             email=form.email.data,
             username=form.username.data,
+            
             )
         new_user.set_password(form.password.data)
         

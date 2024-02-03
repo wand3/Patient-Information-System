@@ -1,8 +1,7 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 """
 Database engine and Config
 """
-
 import os
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import sessionmaker, scoped_session
@@ -18,12 +17,11 @@ env = os.environ.get('WEBAPP_ENV')
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'any complex string'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    
+    PIS_ADMIN = os.environ.get('PIS_ADMIN') or "administrator@gmail.com"
 
  
 class DevConfig(Config):
     DEBUG = True
-    PIS_ADMIN = os.environ.get('PIS_ADMIN') or "administrator@gmail.com"
     SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, '{}.db').format(os.environ.get('WEBAPP_ENV'))
 
     global engine
