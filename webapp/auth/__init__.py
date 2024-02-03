@@ -1,14 +1,19 @@
 #!/usr/bin/env python3
-""" Webapp authenticationview
+""" Webapp authentication view
 """
 import functools
 from flask import Blueprint, abort
 from models.user import User, AnonymousUser
 from config import db_session
 from flask_login import LoginManager, current_user
+
+
 # create blueprint for auth views 
-auth_views = Blueprint('auth_views', __name__, template_folder='../templates/auth',
-    url_prefix="/auth")
+auth_views = Blueprint('auth_views',
+                    __name__, 
+                    template_folder='../templates/auth',
+                    url_prefix="/auth"
+                    )
 
 
 login_manager = LoginManager()

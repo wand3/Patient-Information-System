@@ -10,7 +10,7 @@ from models.base_model import BaseModel
 from models.history import History
 from models.patient import Patient
 from models.user import User, Role
-from config import Base, engine
+
 
 env = os.environ.get('WEBAPP_ENV')
 if env == None:
@@ -27,7 +27,6 @@ else:
 @app.shell_context_processor
 def make_shell_context():
     # Base.metadata.create_all(bind=engine)
-
     return dict(BaseModel=BaseModel, User=User, Patient=Patient, History=History, Role=Role) 
 
 

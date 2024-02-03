@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Admin{% endblock %}
+{% block head %}
+  
+{% endblock %}
+{% block content %}
+  <!-- <div class="regform"> -->
+  {% for i in users %}
+    <p>{{i.id}} othernames: {{i.email}}  name: {{i.username}} Role: {{i.roles}}</p>
+  {% endfor %}
+
+  {% for i in patients %}
+    <p>{{i.id}} othernames: {{i.email}}  name: {{i.username}} Role: {{i.roles}}</p>
+  {% endfor %}
+
+  
+
+  <!-- </div> -->
+{% endblock %}
+{% block footer %}
+{% endblock %}
