@@ -4,22 +4,30 @@
   
 {% endblock %}
 {% block content %}
-  <!--  -->
+  <h4>Users</h4>
   {% for i in users %}
     <p>{{i.id}} othernames: {{i.email}}  name: {{i.username}} Role: {{i.roles}}</p>
   {% endfor %}
 
+
+  <h4>Patients</h4>
   {% for i in patients %}
     <p>{{i.id}} othernames: {{i.email}}  name: {{i.username}} Role: {{i.roles}}</p>
   {% endfor %}
 
+
+  <h4>Roles</h4>
+  {% for i in roles %}
+    <p>{{i.id}} Rolename: {{i.name}} </p>
+  {% endfor %}
   {% block createrole %}
     {% include "create_role.html" %}
   {% endblock %}
 
+
   
 
-  <!-- </div> -->
+  </div> 
 {% endblock %}
 {% block footer %}
 {% endblock %}

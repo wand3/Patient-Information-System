@@ -33,7 +33,7 @@ class PatientRegForm(FlaskForm):
     address = StringField( 'Address', validators=[DataRequired()])
     email = EmailField( 'Email', validators=[DataRequired()])
     phone  = TelField( 'Phone Number', validators=[DataRequired()])
-    dob = DateField( 'Date Of Birth', validators=[DataRequired()])
+    dob = DateField( 'Date Of Birth', validators=[DataRequired()], format='%Y-%m-%d')
     gender = SelectField('Gender', choices=['','Female', 'Male'], coerce=str)
     bloodgroup = SelectField( 'Blood Group', choices=['', 'A+', 'A-', 'B+', 'B-', 'O+', 'O-', 'AB+', 'AB-'], coerce=str)
     genotype = SelectField( 'Genotype', choices=['', 'AA', 'AS', 'SS'], coerce=str)

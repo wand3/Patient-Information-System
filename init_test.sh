@@ -1,3 +1,4 @@
-!#/usr/bin/env bsh
+#!/bin/bash
 
 export WEBAPP_ENV=test
+flask run

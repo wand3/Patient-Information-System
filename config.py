@@ -41,7 +41,7 @@ class TestConfig(Config):
     engine = create_engine(SQLALCHEMY_DATABASE_URI, pool_pre_ping=True, echo=True)
     global db_session
     db_session = scoped_session(sessionmaker(autoflush=False, autocommit=False, bind=engine)) 
-    Base.metadata.drop_all(engine)
+    # Base.metadata.drop_all(engine)
     Base.metadata.create_all(bind=engine)
 
 class ProdConfig(Config):

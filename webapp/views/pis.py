@@ -12,8 +12,7 @@ from webapp.auth import has_role
 
 @app_views.route('/', methods=['GET'], strict_slashes=False)
 def index():
-    all = db_session.query(Patient)
-    return render_template("index.html", all=all)
+    return render_template("index.html")
 
 
 # Patient profile route

@@ -1,5 +1,5 @@
 <!-- Add role form -->
-<form method="POST" action="{{ url_for('admin_views.create_role')}}", enctype="multipart/form-data">
+<form method="POST" action="{{ url_for('admin.create_role')}}", enctype="multipart/form-data">
     {{ form.hidden_tag() }}
     <div class="form-group">
         {{ form.new_role.label(class="form-label") }}
@@ -8,7 +8,7 @@
     
     <div class="form-group">
         {{ form.create.label(class="form-label") }}
-        {{ form.submit() }}
+        {{ form.create() }}
     </div>
 </form>
-<!-- end add role form -->
+<!--  end add role form -->

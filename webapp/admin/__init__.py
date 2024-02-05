@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-admin_views = Blueprint('admin',
+admin = Blueprint('admin',
                         __name__,
                         template_folder="../templates/admin",
                         url_prefix="/admin")
@@ -9,4 +9,4 @@ admin_views = Blueprint('admin',
 from webapp.admin.admin import *
 
 def create_module(app, **kwargs):
-    app.register_blueprint(admin_views)
+    app.register_blueprint(admin)
