@@ -1,0 +1,14 @@
+<!-- Add role form -->
+<form method="POST" action="{{ url_for('admin_views.create_role')}}", enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+        {{ form.new_role.label(class="form-label") }}
+        {{ form.new_role(class="form-input", type="text")}}
+    </div>
+    
+    <div class="form-group">
+        {{ form.create.label(class="form-label") }}
+        {{ form.submit() }}
+    </div>
+</form>
+<!-- end add role form -->
