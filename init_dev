@@ -1,0 +1,4 @@
+!#/usr/bin/env bsh
+
+
+export WEBAPP_ENV=dev
