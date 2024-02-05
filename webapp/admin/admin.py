@@ -1,6 +1,6 @@
 from flask import render_template, url_for, abort, redirect, request
 from . import admin
-from webapp.admin.forms import CreaterolesForm
+from webapp.admin.forms import CreaterolesForm, UpdaterolesForm
 from models.base_model import BaseModel
 from models.history import History
 from models.patient import Patient
@@ -29,20 +29,20 @@ def create_role():
 @has_role('administrator')
 @admin.route('/assign_role', methods=["GET", "POST"], strict_slashes=False)
 def assign_role():
-    form = CreaterolesForm()
+    form = UpdaterolesForm()
     # user = db_session.query(User).filter_by(id=current_user.id)
-    user = db_session.get(User, id=current_user.id)
+    user = db_session.query(User).filter_by(email=form.user_email.data).one()
 
     if form.validate_on_submit():
-        # new_role = User(id=form.new_role.data)
-        existing_row = user.roles
-        existing_row.append(form.new_role.data)
-        db_session.add(existing_row)
-        db_session.commit()
+        user.assign_role(email=form.user_email.data, role=form.assign_roles.data)
+        # existing_row = user.roles
+        # existing_row.append(form.new_role.data)
+        # db_session.add(existing_row)
+        # db_session.commit()
 
-        return redirect(url_for('.base'))
+        return redirect(url_for('admin.base'))
         
-    return render_template('base.html', form=form)
+    return render_template('base.html', form=form, user=user)
 
 
 # edit users and patients records

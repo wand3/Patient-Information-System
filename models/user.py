@@ -85,6 +85,14 @@ class User(Base, BaseModel):
         return False
     
     @property
+    def assign_role(self, email, role):
+        user = db_session.query(User).filter_by(email=email).one()
+        if user:
+            user.roles.append(role)
+            db_session.commit() 
+        raise AttributeError("User not found")               
+
+    @property
     def is_active(self):
         return True
     
