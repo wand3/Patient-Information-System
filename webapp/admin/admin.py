@@ -39,6 +39,8 @@ def assign_role():
         existing_row.append(form.new_role.data)
         db_session.add(existing_row)
         db_session.commit()
+
+        return redirect(url_for('.base'))
         
     return render_template('base.html', form=form)
 
