@@ -10,9 +10,12 @@
     <div id="content">
         {% block content %} 
             <div class="create-user">
-                <!-- {% block createrole %}
-                {% endblock %} -->
+                {% block createrole %}
+                {% endblock %}
+
             </div>
+            {% block assignrole %}
+            {% endblock %}
         {% endblock %}
     </div>
     <div id="footer">

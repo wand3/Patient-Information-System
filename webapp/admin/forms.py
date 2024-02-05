@@ -12,6 +12,6 @@ class CreaterolesForm(FlaskForm):
 
 
 class UpdaterolesForm(FlaskForm):
-    user_email = SelectField('Email', validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired(), Length(1, 40), Email()])
     assign_roles = StringField('Assign Role', validators=[DataRequired(), Length(1, 40)])
     assign = SubmitField('Assign Role')

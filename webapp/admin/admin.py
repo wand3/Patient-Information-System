@@ -1,4 +1,4 @@
-from flask import render_template, url_for, abort, redirect, request
+from flask import render_template, url_for, abort, redirect, request, flash
 from . import admin
 from webapp.admin.forms import CreaterolesForm, UpdaterolesForm
 from models.base_model import BaseModel
@@ -29,20 +29,18 @@ def create_role():
 @has_role('administrator')
 @admin.route('/assign_role', methods=["GET", "POST"], strict_slashes=False)
 def assign_role():
-    form = UpdaterolesForm()
-    # user = db_session.query(User).filter_by(id=current_user.id)
-    user = db_session.query(User).filter_by(email=form.user_email.data).one()
-
-    if form.validate_on_submit():
-        user.assign_role(email=form.user_email.data, role=form.assign_roles.data)
-        # existing_row = user.roles
-        # existing_row.append(form.new_role.data)
-        # db_session.add(existing_row)
-        # db_session.commit()
-
-        return redirect(url_for('admin.base'))
+    form_update = UpdaterolesForm()
+    email = form_update.email.data
+    role_to_assign = form_update.assign_roles.data
+    user = db_session.query(User).filter_by(email=email).first()
+    if user:
         
-    return render_template('base.html', form=form, user=user)
+        user.add_role_to_user(email=email, role_name=role_to_assign)
+        # db_session.commit()
+        flash("Role added successfuly")
+    return redirect(url_for('admin.base', form_update=form_update, user=user))
+        
+    # return render_template('base.html', form_update=form_update, user=user)
 
 
 # edit users and patients records
@@ -56,11 +54,12 @@ def assign_role():
 @admin.route('/base', methods=["GET", "POST"], strict_slashes=False)
 def base():
     form = CreaterolesForm()
+    form_update = UpdaterolesForm()
     
 
     users = db_session.query(User).all()
     roles = db_session.query(Role).all()
     patients = db_session.query(Patient).all()
 
-    return render_template('admin.html', users=users, patients=patients, form=form, roles=roles)
+    return render_template('admin.html', users=users, patients=patients, form=form, roles=roles, form_update=form_update)
 
