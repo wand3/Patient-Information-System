@@ -39,9 +39,16 @@ def assign_role():
         # db_session.commit()
         flash("Role added successfuly")
     return redirect(url_for('admin.base', form_update=form_update, user=user))
-        
-    # return render_template('base.html', form_update=form_update, user=user)
 
+
+# delete user role
+@login_required
+@has_role('administrator')
+@admin.route('/delete_role/<int: id>', methods=["GET", "POST"], strict_slashes=False)
+def delete_role(id):
+    
+        flash("Role added successfuly")
+    return redirect(url_for('admin.base', user=user))
 
 # edit users and patients records
 

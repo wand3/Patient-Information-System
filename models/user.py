@@ -94,8 +94,11 @@ class User(Base, BaseModel):
             return user.id
         return None
 
+    # add role to a user
     def add_role_to_user(self, email, role_name):
+        # get user id from email
         user = self.get_user_id_by_email(email)
+        # loaded user to assign role to
         add_to_user = db_session.query(User).filter_by(id=user).one()
         new_role = db_session.query(Role).filter_by(name=role_name).first()
         if not new_role:
@@ -106,7 +109,18 @@ class User(Base, BaseModel):
             existing_row = add_to_user.roles
             existing_row.append(new_role)
             db_session.commit()
-        
+
+
+    # delete a role from user 
+    def delete_user_role(self, email):
+        # get user id from email
+        user = self.get_user_id_by_email(email)
+        # loaded user to delete role from
+        delete_from_user = db_session.query(User).filter_by(id=user).one()
+        if delete_from_user:
+            delete_from_user.roles.pop()
+            db_session.commit()
+            
 
 
     @property
