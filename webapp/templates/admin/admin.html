@@ -25,8 +25,12 @@
 
     <h4>Assign role</h4>
     {% include "assign_role.html" %}
-
+    <div class="delete-role">
+        <button><a href="{{ url_for('admin.delete_role', id=user.id) }}">Delete Role</a> </button>
+    </div>
   {% endblock %}
+
+  
 
 
 

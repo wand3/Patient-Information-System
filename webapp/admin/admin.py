@@ -46,6 +46,10 @@ def assign_role():
 @has_role('administrator')
 @admin.route('/delete_role/<int: id>', methods=["GET", "POST"], strict_slashes=False)
 def delete_role(id):
+    user = db_session.query(User).filter_by(id=id).first()
+    if user:
+        user.delete_user_role
+    
     
         flash("Role added successfuly")
     return redirect(url_for('admin.base', user=user))
