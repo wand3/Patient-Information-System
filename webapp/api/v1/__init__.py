@@ -1,13 +1,15 @@
 from flask import Blueprint
 
-v1 = Blueprint( 'v1',
+api_views = Blueprint('api_views',
 				__name__,
 				url_prefix="/api/v1"
 				)
 
-# import views to prevent 404 error
-from webapp.api.v1 import *
+# import admin/views to prevent 404 error
+from webapp.api.v1.admin.admin import *
+from webapp.api.v1.views.views import *
+
 
 def create_module(app, **kwargs):
-	app.register_blueprint(v1)
+	app.register_blueprint(api_views)
 	return app
