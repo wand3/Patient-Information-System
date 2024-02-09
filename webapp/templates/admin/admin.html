@@ -40,3 +40,9 @@
 {% endblock %}
 {% block footer %}
 {% endblock %}
+
+<!-- load scripts for admin page -->
+{% block scripts %}
+  {{ super() }}
+  <script src="{{url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}
