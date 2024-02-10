@@ -18,12 +18,13 @@ const deleteRole = (userData) => {
 
 
 const getUserById = async (userId) => {
-  const url = `http://127.0.0.1/api/v1/delete_role/${id}` // url_for()
+  const url = `/delete_role/${id}` // url_for()
 
   try {
     const response = await fetch(url, {
       method: "DELETE",
     });
+    const data = await response.json();
 
     if (response.ok) {
       console.log(`User ${id} role deleted`)

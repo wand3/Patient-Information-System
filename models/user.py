@@ -112,14 +112,19 @@ class User(Base, BaseModel):
 
 
     # delete a role from user 
-    def delete_user_role(self, email):
+    def delete_user_role(self, id):
         # get user id from email
-        user = self.get_user_id_by_email(email)
+        user = self.get_id()
         # loaded user to delete role from
-        delete_from_user = db_session.query(User).filter_by(id=user).one()
-        if delete_from_user:
-            delete_from_user.roles.pop()
-            db_session.commit()
+        role_delete = db_session.query(User).filter_by(id=user).one()
+        users_roles = role_delete.roles
+        if user:
+            if len(users_roles) > 0:
+                users_roles.pop()
+                # role_delete.roles.pop()
+                db_session.commit()
+
+        
             
 
 

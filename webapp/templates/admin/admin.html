@@ -29,7 +29,20 @@
         <button><a href="{{ url_for('admin.delete_role', id=user.id) }}">Delete Role</a> </button>
     </div> -->#}
     
-    <button id="button">Delete User Role</button>
+    {% for user in users %}
+      <li>
+      {{user.email}}
+        <form action="{{ url_for('api_views.admin_delete_user_role', id=user.id) }}", method="POST">
+          <input type="hidden" name="_method" value="DELETE">
+          <button type="submit">Delete</button>
+            {{user.id}}
+        </form>
+       </li>
+    {% endfor %}
+   
+    
+    
+    Delete User Role</button>
     <div id="user_deleted"></div>
   {% endblock %}
 
