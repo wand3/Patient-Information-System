@@ -2,7 +2,7 @@
 // displayUser = deleteRole
 
 
-const deleteRole = (userDate) => {
+const deleteRole = (userData) => {
   const  user_deleted = document.getElementById('deleteRole');
 
   user_deleted.innerHTML = '';
@@ -18,6 +18,18 @@ const deleteRole = (userDate) => {
 
 
 const getUserById = async (userId) => {
-  const url = `http://`
-}
+  const url = `http://127.0.0.1/api/v1/delete_role/${id}`
 
+  try {
+    const response = await fetch(url, {
+      method: "DELETE",
+    });
+
+    if (response.ok) {
+      console.log(`User ${id} role deleted`)
+      } else {
+      console.log(`Failed to delete User ${id} role`)};
+    } catch (error) {
+    console.log('Error:', error)
+  }
+};
