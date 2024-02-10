@@ -29,6 +29,7 @@ def create_role():
 @has_role('administrator')
 @admin.route('/assign_role', methods=["GET", "POST"], strict_slashes=False)
 def assign_role():
+    roles = db_session.query(Role).all()
     form_update = UpdaterolesForm()
     email = form_update.email.data
     role_to_assign = form_update.assign_roles.data
@@ -38,7 +39,7 @@ def assign_role():
         user.add_role_to_user(email=email, role_name=role_to_assign)
         # db_session.commit()
         flash("Role added successfuly")
-    return redirect(url_for('admin.base', form_update=form_update, user=user))
+    return redirect(url_for('admin.base', form_update=form_update, user=user, roles=roles))
 
 
 # delete user role

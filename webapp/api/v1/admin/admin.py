@@ -11,10 +11,10 @@ def admin_delete_user_role(id):
     delete_id = db_session.query(User).get(id)
     # user.delete_user_role(user)
     if delete_id:
+        if len(delete_id.roles) == 0:
+            flash("User does not have any role")      
+            return redirect(url_for("admin.base"))
         delete_id.delete_user_role(id=delete_id)
         db_session.commit()
         flash(f"User {delete_id.username}'s Role deleted")      
-        return redirect(url_for("admin.base"))
-    else: 
-        flash("User does not have any role")      
         return redirect(url_for("admin.base"))
