@@ -18,7 +18,7 @@ const deleteRole = (userData) => {
 
 
 const getUserById = async (userId) => {
-  const url = `http://127.0.0.1/api/v1/delete_role/${id}`
+  const url = `http://127.0.0.1/api/v1/delete_role/${id}` // url_for()
 
   try {
     const response = await fetch(url, {
@@ -33,3 +33,13 @@ const getUserById = async (userId) => {
     console.log('Error:', error)
   }
 };
+
+
+// handle button click 
+const handleButtonClick = () => {
+    const id = getUserById(id);
+};
+
+// attach click event listener to your button 
+const button = document.getElementById('button');
+button.addEventListener('click', handleButtonClick);
