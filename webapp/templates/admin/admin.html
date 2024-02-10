@@ -4,6 +4,13 @@
   
 {% endblock %}
 {% block content %}
+<!-- display flashed messages -->
+  {% for message in get_flashed_messages() %}
+  <div class="alert alert-warning " style="margin: 15px 0; background-color: transparent; color: rgb(89, 31, 31)">
+      <button type="button" class="close" data-dismiss="alert" style="color: rgb(112, 43, 43)">&times;</button>
+      {{ message }}
+  </div>
+  {% endfor %}
   <h4>Users</h4>
   {% for i in users %}
     <p>{{i.id}} othernames: {{i.email}}  name: {{i.username}} Role: {{i.roles}}</p>
@@ -30,14 +37,14 @@
     </div> -->#}
     
     {% for user in users %}
-      <li>
+      <ul>
       {{user.email}}
         <form action="{{ url_for('api_views.admin_delete_user_role', id=user.id) }}", method="POST">
           <input type="hidden" name="_method" value="DELETE">
           <button type="submit">Delete</button>
             {{user.id}}
         </form>
-       </li>
+       </ul>
     {% endfor %}
    
     
