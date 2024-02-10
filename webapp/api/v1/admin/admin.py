@@ -16,5 +16,5 @@ def admin_delete_user_role(id):
         flash(f"User {delete_id.username}'s Role deleted")      
         return redirect(url_for("admin.base"))
     else: 
-        db_session.roll_back()
-        return jsonify({'Message': f'User {id} not found'}), 404
+        flash("User does not have any role")      
+        return redirect(url_for("admin.base"))
