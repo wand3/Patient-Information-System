@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """ Webapp authentication view
 """
-import functools
-from flask import Blueprint, abort, flash
+from functools import wraps
+from flask import Blueprint, abort, flash, jsonify
 from models.user import User, AnonymousUser
 from config import db_session
 from flask_login import LoginManager, current_user
@@ -31,17 +31,21 @@ def create_module(app, **kwargs):
 # import views to prevent 404 error
 from webapp.auth.auth import *
 
-def has_role(*name):
-    def real_decorator(f):
-        def wraps(*args, **kwargs):
-            if current_user.get_user_role() not in name:
-                abort(403)
-                flash('Authentication error for the role')
+def has_role(*roles):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            # Check if the user has all the required roles
+            user_roles = current_user.roles  # Replace with your logic to get user roles
+            for r in roles:
+                if current_user.has_role(r):
+                    return func(*args, **kwargs)
+            # if all(role in user_roles for role in roles):
+            #     return func(*args, **kwargs)
             else:
-                return f(*args, **kwargs)
-        return functools.update_wrapper(wraps, f)
-    return real_decorator
-
+                return jsonify({'error': 'Unauthorized'}), 401
+        return wrapper
+    return decorator
 
 @login_manager.user_loader
 def load_user(id):

@@ -33,7 +33,7 @@
 
         {% if current_user.is_anonymous == True %}
             <!-- <a href="{{ url_for('app_views.register') }}"><button type="button" class="btn button secondary-button mr-4 text-uppercase" >New Patient</button></a> -->
-        {% elif current_user.is_anonymous == False and ( current_user.has_role('administrator' or 'record_officer') )%}
+        {% elif current_user.is_anonymous == False and current_user.has_role('administrator', 'record_officer') %}
             <a href="{{ url_for('app_views.register') }}"><button type="button" class="btn button secondary-button mr-4 text-uppercase" >New Patient</button></a>
         {% endif %}
 

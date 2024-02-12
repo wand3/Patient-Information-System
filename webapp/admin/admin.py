@@ -12,8 +12,8 @@ from config import db_session
 
 # create roles to users
 @login_required
-@has_role('administrator')
 @admin.route('/create_role', methods=["GET", "POST"], strict_slashes=False)
+# @has_role('administrator')
 def create_role():
     form = CreaterolesForm()
     # role = db_session.query(Role)
@@ -26,8 +26,8 @@ def create_role():
 
 # assign roles to users
 @login_required
-@has_role('administrator')
 @admin.route('/assign_role', methods=["GET", "POST"], strict_slashes=False)
+# @has_role('administrator')
 def assign_role():
     roles = db_session.query(Role).all()
     form_update = UpdaterolesForm()
@@ -49,8 +49,8 @@ def assign_role():
 # display doctors and record officers actions and time
 
 @login_required
-@has_role('administrator')
 @admin.route('/base', methods=["GET", "POST"], strict_slashes=False)
+@has_role('administrator')
 def base():
     form = CreaterolesForm()
     form_update = UpdaterolesForm()
