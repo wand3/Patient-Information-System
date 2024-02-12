@@ -42,19 +42,6 @@ def assign_role():
     return redirect(url_for('admin.base', form_update=form_update, user=user, roles=roles))
 
 
-# delete user role
-# @login_required
-# @has_role('administrator')
-# @admin.route('/delete_role/<int: id>', methods=["GET", "POST"], strict_slashes=False)
-# def delete_role(id):
-#     user = db_session.query(User).filter_by(id=id).first()
-#     if user:
-#         user.delete_user_role
-    
-    
-#         flash("Role added successfuly")
-#     return redirect(url_for('admin.base', user=user))
-
 # edit users and patients records
 
 # search database with filters of either users and patients

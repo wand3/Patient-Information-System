@@ -78,11 +78,15 @@ class User(Base, BaseModel):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
     
-    def has_role(self, name):
-        for role in self.roles:
-            if role.name == name:
-                return True
-        return False
+    # def has_role(self, name):
+    #     for role in self.roles:
+    #         if role.name == name:
+    #             return True
+    #     return False
+
+    # get current user roles 
+    def get_user_role(self):
+        return self.roles
     
 
     # get user by email
@@ -123,6 +127,7 @@ class User(Base, BaseModel):
                 users_roles.pop()
                 # role_delete.roles.pop()
                 db_session.commit()
+            flash(f"User has no role at the moment")
 
         
             

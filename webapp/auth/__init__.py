@@ -2,7 +2,7 @@
 """ Webapp authentication view
 """
 import functools
-from flask import Blueprint, abort
+from flask import Blueprint, abort, flash
 from models.user import User, AnonymousUser
 from config import db_session
 from flask_login import LoginManager, current_user
@@ -31,13 +31,14 @@ def create_module(app, **kwargs):
 # import views to prevent 404 error
 from webapp.auth.auth import *
 
-def has_role(name):
+def has_role(*name):
     def real_decorator(f):
         def wraps(*args, **kwargs):
-            if current_user.has_role(name):
-                return f(*args, **kwargs)
-            else:
+            if current_user.get_user_role() not in name:
                 abort(403)
+                flash('Authentication error for the role')
+            else:
+                return f(*args, **kwargs)
         return functools.update_wrapper(wraps, f)
     return real_decorator
 
