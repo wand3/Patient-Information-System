@@ -18,7 +18,7 @@ def index():
 # Patient profile route
 @login_required
 @app_views.route('/patient/<int:id>', methods=["GET"], strict_slashes=False)
-@has_role('administrator')
+@has_role('administrator', 'record_officer')
 def patient_profile(id):
         
     all = db_session.query(Patient)
@@ -32,7 +32,7 @@ def patient_profile(id):
 # Delete patient record route
 @login_required
 @app_views.route('/delete/<int:id>', methods=['GET', 'POST'], strict_slashes=False)
-@has_role('administrator')
+@has_role('administrator', 'record_officer')
 def delete_record(id):
     user = db_session.query(Patient).get(id)
     db_session.delete(user)
@@ -44,7 +44,7 @@ def delete_record(id):
 # Patient Registeration route
 @login_required
 @app_views.route('/register', methods=['GET', 'POST'], strict_slashes=False)
-@has_role('administrator')
+@has_role('administrator', 'record_officer')
 def register():
     form = PatientRegForm(request.form)
     if form.validate_on_submit():
@@ -81,7 +81,7 @@ def register():
 # update patient information
 @login_required
 @app_views.route('/edit_record/<int:user_id>', methods=["GET", "POST"], strict_slashes=False)
-@has_role('administrator')
+@has_role('administrator', 'record_officer')
 def edit_record(user_id):
     """
         load patient profile to be editted by id

@@ -13,10 +13,9 @@ from config import db_session
 # create roles to users
 @login_required
 @admin.route('/create_role', methods=["GET", "POST"], strict_slashes=False)
-# @has_role('administrator')
+@has_role('administrator')
 def create_role():
     form = CreaterolesForm()
-    # role = db_session.query(Role)
     if form.validate_on_submit():
         new_role = Role(name=form.new_role.data)
         db_session.add(new_role)
@@ -27,7 +26,7 @@ def create_role():
 # assign roles to users
 @login_required
 @admin.route('/assign_role', methods=["GET", "POST"], strict_slashes=False)
-# @has_role('administrator')
+@has_role('administrator')
 def assign_role():
     roles = db_session.query(Role).all()
     form_update = UpdaterolesForm()

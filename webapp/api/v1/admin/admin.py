@@ -13,7 +13,7 @@ from flask_login import login_required
 # delete role from a particular user 
 @login_required
 @api_views.route('/delete_role/<id>', methods=["POST"], strict_slashes=False)
-# @has_role('administrator')
+@has_role('administrator')
 def admin_delete_user_role(id):
     users = db_session.query(User).all()
     delete_id = db_session.query(User).get(id)
