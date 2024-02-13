@@ -81,8 +81,7 @@ def search():
     resp = request.args.get("search_object")
     print(resp)
     if resp:
-        results = db_session.query(Patient).filter_by(Patient.email.icontain(resp) | Patient.id.icontain(resp) \
-                                            | Patient.lname.icontain(resp)).order_by(Patient.id.desc()).all()
+        results = db_session.query(Patient).filter_by(Patient.email.ilike(resp)).order_by(Patient.id.desc()).all()
     else:
         results = []
 
