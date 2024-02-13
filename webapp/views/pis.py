@@ -1,6 +1,7 @@
 
 from flask import Flask, render_template, url_for, flash, redirect, request, make_response
 from webapp.views import app_views
+from sqlalchemy import or_
 from models.patient import Patient
 from forms import PatientRegForm, UpdatePatientForm
 # from sqlalchemy import update
@@ -76,14 +77,16 @@ def register():
 
 # search patient
 @login_required
-@app_views.route('/search', methods=["GET", "POST"], strict_slashes=False)
+@app_views.route('/search', methods=["GET"], strict_slashes=False)
 def search():
     resp = request.args.get("search_object")
     print(resp)
     if resp:
-        results = db_session.query(Patient).filter_by(Patient.email.ilike(resp)).order_by(Patient.id.desc()).all()
+        results = db_session.query(Patient).filter(or_(Patient.email.ilike(f'%{resp}%')), Patient.id.ilike(f'%{resp}%')).order_by(Patient.id.desc()).all()
+        # results = db_session.query(Patient).filter(Patient.id.ilike(f'%{resp}%')).order_by(Patient.id.desc()).all()
+
     else:
-        results = []
+        results = ["fack"]
 
     return render_template("search_patient.html", results=results)
 

@@ -18,17 +18,18 @@
     <!-- search area  -->
     <div class="search">
     <div class="columns">
-        <input type="text" class="input" placeholder="Search" name="search_object" hx-get="/search", hx-trigger="keyup changed delay:500ms" hx-target="#results">
+        <input type="text" class="input" placeholder="Search" name="search_object" hx-get="/search", hx-trigger="keyup changed delay:300ms" hx-target="#results">
     </div>
         <table class="search-results">
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Firstname</th>
                     <th>Email</th>
                 </tr>
             </thead>
-            <tbody id="results"></tbody>
+            <tbody id="results">
+            
+            </tbody>
         </table>
     </div>
 
@@ -54,10 +55,11 @@
         {% endif %}
 
     </div>
-    {% block script %}
-        {{ super() }}
-        <script src="{{ url_for('static', filename='/js/htmx.min.js')}}"></script>
-    {% endblock %}
+    
+{% endblock %}
+{% block script %}
+    {{ super() }}
+    <script src="{{ url_for('static', filename='/js/htmx.min.js')}}"></script>
 {% endblock %}
 
 
