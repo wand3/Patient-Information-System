@@ -75,7 +75,18 @@ def register():
     return render_template("register.html", form=form)
 
 # search patient
-# @app_views.route('/search')
+@login_required
+@app_views.route('/search', methods=["GET", "POST"], strict_slashes=False)
+def search():
+    resp = request.args.get("search_object")
+    print(resp)
+    if resp:
+        results = db_session.query(Patient).filter_by(Patient.email.icontain(resp) | Patient.id.icontain(resp) \
+                                            | Patient.lname.icontain(resp)).order_by(Patient.id.desc()).all()
+    else:
+        results = []
+
+    return render_template("search_patient.html", results=results)
 
 
 # update patient information
