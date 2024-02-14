@@ -1,6 +1,6 @@
-{% for result in results %}
-<tr>
-    <td>{{ result.id }}</td>
-    <td>{{ result.email}}</td>
-</tr>
-{% endfor %}
+{% block results %}
+    {% for p in patients %}
+        <p>{{p.id}}</p>
+        <p>{{p.email}}</p>
+    {% endfor %}
+{% endblock %}

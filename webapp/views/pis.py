@@ -1,8 +1,9 @@
 
-from flask import Flask, render_template, url_for, flash, redirect, request, make_response
+from flask import render_template, url_for, flash, redirect, request, make_response
 from webapp.views import app_views
 from sqlalchemy import or_
 from models.patient import Patient
+from models.user import User
 from forms import PatientRegForm, UpdatePatientForm
 # from sqlalchemy import update
 from config import db_session
@@ -77,18 +78,19 @@ def register():
 
 # search patient
 @login_required
-@app_views.route('/search', methods=["GET"], strict_slashes=False)
+@app_views.route('/search', methods=["GET", "POST"], strict_slashes=False)
 def search():
-    resp = request.args.get("search_object")
-    print(resp)
-    if resp:
-        results = db_session.query(Patient).filter(or_(Patient.email.ilike(f'%{resp}%')), Patient.id.ilike(f'%{resp}%')).order_by(Patient.id.desc()).all()
-        # results = db_session.query(Patient).filter(Patient.id.ilike(f'%{resp}%')).order_by(Patient.id.desc()).all()
-
+    search_input = request.args.get('q')
+    # u = ColumnOperators.ilike()
+    patients = db_session.query(Patient).filter(or_(Patient.email.ilike(f"%{search_input}%"), Patient.id.ilike(f"%{search_input}%"))).all()
+    if search_input:
+        return render_template("search_patient.html", patients=patients)
     else:
-        results = ["fack"]
+        return "<p>Patient does not exist</p>"
 
-    return render_template("search_patient.html", results=results)
+    
+    
+
 
 
 # update patient information

@@ -17,20 +17,17 @@
     
     <!-- search area  -->
     <div class="search">
-    <div class="columns">
-        <input type="text" class="input" placeholder="Search" name="search_object" hx-get="/search", hx-trigger="keyup changed delay:300ms" hx-target="#results">
-    </div>
-        <table class="search-results">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody id="results">
-            
-            </tbody>
-        </table>
+        <input type="text" name="q"
+            hx-get="{{ url_for('app_views.search')}}"
+            hx-trigger="keyup changed delay:500ms load"
+            hx-target="#search-results"
+            placeholder="Search..."
+        >
+        <div id="search-results">
+            {% block results %}
+            {% endblock %}
+        </div>
+        
     </div>
 
     <h1>PIS home page</h1>
@@ -59,7 +56,7 @@
 {% endblock %}
 {% block script %}
     {{ super() }}
-    <script src="{{ url_for('static', filename='/js/htmx.min.js')}}"></script>
+    <script src="{{ url_for('static', filename='js/htmx.min.js')}}"></script>
 {% endblock %}
 
 
