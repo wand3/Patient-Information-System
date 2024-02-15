@@ -11,7 +11,7 @@ A webapp for Hospital's Patient record management
 - Responsiveness
 - API Request and Response handling
 
-### Features
+### Setup
 
 1. Clone this repository.
 2. Create a virtualenv and install the requirements
