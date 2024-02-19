@@ -86,12 +86,9 @@ def search():
     if search_input:
         return render_template("search_patient.html", patients=patients)
     else:
-        return "<p>Patient does not exist</p>"
+        return "<p>Patient does is not registered</p>"
 
     
-    
-
-
 
 # update patient information
 @login_required
