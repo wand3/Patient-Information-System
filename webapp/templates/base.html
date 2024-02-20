@@ -1,9 +1,11 @@
 <!doctype html>                                               
 <html>
   <head>
-    {% block head %}                                             
-     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">                                               
-    <title>{% block title %}Patient-Information-System{% endblock %} </title>
+    {% block head %}
+     {% block styles %}                                            
+     <link rel="stylesheet" href="{{ url_for('static', filename='auth-styles.css') }}">
+     {% endblock %}                                               
+     <title>{% block title %}Patient-Information-System{% endblock %} </title>
     {% endblock %}
   </head>
   <body>

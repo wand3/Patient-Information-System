@@ -1,6 +1,11 @@
 {% extends "base.html" %}
 {% block title %}Sign In{% endblock %}
-{% block head %}{% endblock %}
+{% block head %}
+    {% block styles %}
+        {{ super() }}
+        <link rel="stylesheet" href="{{ url_for('static', filename='styles/auth-styles.css') }}">                                               
+    {% endblock %}
+{% endblock %}
 {% block content %}
 <section class="login">
     <div class="row">
