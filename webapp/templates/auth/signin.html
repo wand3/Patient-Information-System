@@ -10,10 +10,17 @@
 <section class="login">
     <div class="row">
         <div class="left-image">
+            <img src="{{url_for('static', filename='images/left-image.png')}}" alt="">
         </div>
 
-        <div class="rignt-forms">
+        <div class="right-forms">
             <div class="form-area">
+                <div class="sign-in-head">
+                    <p class="sign-in-to">
+                        Sign in to P.I.S
+                    </p>
+                </div>
+                
                 <form method="post" action="{{ url_for('auth_views.signin')}}", enctype="multipart/form-data">
                     {{ form.hidden_tag() }}
                     <div class="form-group">
