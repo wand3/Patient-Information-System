@@ -1,4 +1,5 @@
 #!/bin/bash
 
 export WEBAPP_ENV=dev
-flask run
+export FLASK_DEBUG=1
+flask --debug run 

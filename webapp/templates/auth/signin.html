@@ -23,19 +23,19 @@
                 
                 <form method="post" action="{{ url_for('auth_views.signin')}}", enctype="multipart/form-data">
                     {{ form.hidden_tag() }}
-                    <div class="form-group">
-                        {{ form.email.label(class="form-label") }}
-                        {{ form.email(class="form-input", type="email") }}
+                    <div class="form-group-email">
+                        {{ form.email.label(id="form-label") }}
+                        {{ form.email(class="form-email-input", type="email") }}
                     </div>
                     
-                    <div class="form-group">
-                        {{ form.password.label(class="form-label") }}
-                        {{ form.password(class="form-input", type="password") }}
+                    <div class="form-group-password">
+                        {{ form.password.label(id="form-label") }}
+                        {{ form.password(class="form-password-input", type="password") }}
                     </div>
 
-                    <div class="form-group">
-                        {{ form.remember_me.label(class="form-label") }}
+                    <div class="form-group-remember">
                         {{ form.remember_me(class="form-input") }}
+                        {{ form.remember_me.label(class="form-label-remember") }}
                     </div>
                 
                     

@@ -75,172 +75,96 @@ section .row .right-forms .form-area form form-label{
 
 /* form-label-password */
 
+/* form group for email and password */
 
-position: absolute;
-width: 143px;
-height: 37px;
-left: 0px;
-top: 311px;
+/* form group for email */
+section .row .right-forms .form-area form .form-group-email{
+    position: absolute;
+    width: 458px;
+    height: 110px;
+    left: 22px;
+    top: 170px;
+}
 
+/* email and password label  */
+section .row .right-forms .form-area form #form-label{
+    position: absolute;
+    width: 69px;
+    height: 26px;
+    left: 22px;
+    top: 9px;
 
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
 
-/* Password */
+    color: #0B0B0B;
+}
 
-position: absolute;
-width: 121px;
-height: 28px;
-left: 22px;
-top: 9px;
+/* email input  */
+section .row .right-forms .form-area form .form-group-email .form-email-input{
+    box-sizing: border-box;
+    position: absolute;
+    width: 436px;
+    height: 55px;
+    left: 22px;
+    top: 55px;
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 24px;
-line-height: 29px;
-
-color: #0B0B0B;
-
-
-
-/* form-label-email */
-
-position: absolute;
-width: 99px;
-height: 45px;
-left: 0px;
-top: 170px;
-
-
-
-/* Email */
-
-position: absolute;
-width: 69px;
-height: 26px;
-left: 22px;
-top: 9px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 24px;
-line-height: 29px;
-
-color: #0B0B0B;
-
-/* email-input */
-
-box-sizing: border-box;
-
-position: absolute;
-width: 436px;
-height: 55px;
-left: 22px;
-top: 225px;
-
-border: 1px solid #000000;
-border-radius: 10px;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    font-size: 25px;
+    padding: 0 20px
 
 
-/* si:Check_square */
+}
 
-position: absolute;
-width: 24px;
-height: 24px;
-left: 22px;
-top: 441px;
+/* form group for password */
+section .row .right-forms .form-area form .form-group-password{
+    position: absolute;
+    width: 458px;
+    height: 110px;
+    left: 22px;
+    top: 310px;
+}
+
+/* password input  */
+section .row .right-forms .form-area form .form-group-password .form-password-input{
+    box-sizing: border-box;
+    position: absolute;
+    width: 436px;
+    height: 55px;
+    left: 22px;
+    top: 55px;
+
+    border: 1px solid #000000;
+    border-radius: 10px;
+    padding: 0 20px;
+    font-size: 60px;
 
 
+}
 
-/* v */
-
-position: absolute;
-left: 12.5%;
-right: 12.5%;
-top: 12.5%;
-bottom: 12.5%;
-
-/* $icon-primary */
-border: 1.5px solid #000000;
-
+/* form group remember  */
+section .row .right-forms .form-area form .form-group-remember{
+    position: absolute;
+    left: 40px;
+    top: 450px;
+}
 
 /* Remember me */
+section .row .right-forms .form-area form .form-group-remember .form-label-remember{
+    width: 119px;
+    height: 21px;
+    margin-left: 5px;
 
-position: absolute;
-width: 119px;
-height: 21px;
-left: 59px;
-top: 444px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 21px;
+    /* identical to box height */
 
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 17px;
-line-height: 21px;
-/* identical to box height */
-
-color: #000000;
-
-
-
-/* signin-button */
-
-position: absolute;
-width: 433px;
-height: 57px;
-left: 25px;
-top: 496px;
-
-background: #0D0303;
-border-radius: 20px;
-
-
-/* Sign In */
-
-position: absolute;
-width: 122px;
-height: 30px;
-left: 156px;
-top: 14px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 800;
-font-size: 25px;
-line-height: 30px;
-
-color: #FFFFFF;
-
-
-
-/* Don’t have an account? Sign Up */
-
-position: absolute;
-width: 378px;
-height: 21px;
-left: 34px;
-top: 596px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 600;
-font-size: 17px;
-line-height: 21px;
-/* identical to box height */
-
-color: #000000;
-
-
-
-/* password-input */
-
-box-sizing: border-box;
-
-position: absolute;
-width: 436px;
-height: 55px;
-left: 23px;
-top: 364px;
-
-border: 1px solid #1E1E1E;
-border-radius: 10px;
+    color: #000000;
+}
