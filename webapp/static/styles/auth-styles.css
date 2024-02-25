@@ -114,7 +114,7 @@ section .row .right-forms .form-area form .form-group-email .form-email-input{
 
     border: 1px solid #000000;
     border-radius: 10px;
-    font-size: 25px;
+    font-size: 20px;
     padding: 0 20px
 
 
@@ -141,9 +141,7 @@ section .row .right-forms .form-area form .form-group-password .form-password-in
     border: 1px solid #000000;
     border-radius: 10px;
     padding: 0 20px;
-    font-size: 60px;
-
-
+    font-size: 20px;
 }
 
 /* form group remember  */
@@ -161,10 +159,56 @@ section .row .right-forms .form-area form .form-group-remember .form-label-remem
 
     font-family: 'Inter';
     font-style: normal;
+    font-weight: 500;
+    font-size: 17px;
+    line-height: 21px;
+    /* identical to box height */
+
+    color: #000000;
+}
+
+/* form group submit  */
+section .row .right-forms .form-area form .form-group-submit{
+    position: absolute;
+    width: 458px;
+    height: 110px;
+    left: 42px;
+    top: 490px;
+}
+
+/* submit button */
+section .row .right-forms .form-area form .form-group-submit .form-submit{
+    width: 433px;
+    height: 57px;
+
+    background: #0D0303;
+    border-radius: 20px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 30px;
+
+    color: #FFFFFF;
+}
+
+/* don't have an account  */
+section .row .right-forms .form-area form .dont-have-account{
+    position: absolute;
+    width: 378px;
+    height: 21px;
+    left: 34px;
+    top: 566px;
+
+    font-family: 'Inter';
+    font-style: normal;
     font-weight: 600;
     font-size: 17px;
     line-height: 21px;
     /* identical to box height */
 
     color: #000000;
+    display: flex;
+    justify-content: center;
 }
