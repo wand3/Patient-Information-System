@@ -50,7 +50,8 @@ class User(Base, BaseModel):
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     email = Column(String(64), unique=True, index=True)
-    username = Column(String(64), unique=True, index=True)
+    firstname = Column(String(64), unique=False, index=True)
+    lastname = Column(String(64), unique=False, index=True)
     password_hash = Column(String(128))
     roles = relationship("Role", secondary=roles)
 

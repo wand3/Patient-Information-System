@@ -8,13 +8,16 @@ from config import db_session
 
 class SignupForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Length(1, 40), Email()])
-    username = StringField('Username', validators=[DataRequired(), Length(1, 40), 
-                                                   Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
-               'Usernames must have only letters, numbers, dots or '
-               'underscores')])
+    # username = StringField('Username', validators=[DataRequired(), Length(1, 40), 
+    #                                                Regexp('^[A-Za-z][A-Za-z0-9_.]*$', 0,
+    #            'Usernames must have only letters, numbers, dots or '
+    #            'underscores')])
+    firstname = StringField('Firstname', validators=[DataRequired(), Length(1, 40)])   
+    lastname = StringField('Firstname', validators=[DataRequired(), Length(1, 40)])
     password = PasswordField('Password', validators=[
         DataRequired(), EqualTo('password2', message='Passwords must match.')])
     password2 = PasswordField('Confirm password', validators=[DataRequired()])
+    agree = BooleanField('I agree')
     submit = SubmitField('Register')
 
 

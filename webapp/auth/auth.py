@@ -15,8 +15,9 @@ def signup():
     if form.validate_on_submit():
         new_user = User(
             email=form.email.data,
-            username=form.username.data,
-            
+            firstname=form.firstname.data,
+            lastname=form.lastname.data,
+            agree=form.agree.data
             )
         new_user.set_password(form.password.data)
         
@@ -26,7 +27,7 @@ def signup():
         flash("Your user has been created, please login.", category="success")
 
         return redirect(url_for('.signin'))
-    return render_template('auth/signup.html', form=form)
+    return render_template('auth/signup.html', form=form, agree=True)
 
 
 @auth_views.route('/signin', methods=['GET', 'POST'], strict_slashes=False)
