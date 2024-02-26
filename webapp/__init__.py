@@ -11,6 +11,7 @@ def create_app(object_name):
         e.g. Patient-Information-System.config.DevConfig
     """
     app = Flask(__name__)
+
     import config
     app.config.from_object(object_name)
         

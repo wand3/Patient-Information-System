@@ -18,7 +18,7 @@ class SignupForm(FlaskForm):
         DataRequired(), EqualTo('password2', message='Passwords must match.')])
     password2 = PasswordField('Confirm password', validators=[DataRequired()])
     agree = BooleanField('I agree')
-    submit = SubmitField('Register')
+    submit = SubmitField('Sign Up')
 
 
 class SigninForm(FlaskForm):

@@ -16,10 +16,11 @@ def signup():
         new_user = User(
             email=form.email.data,
             firstname=form.firstname.data,
-            lastname=form.lastname.data,
+            lastname=form.lastname.data,        
             agree=form.agree.data
             )
         new_user.set_password(form.password.data)
+
         
         db_session.add(new_user)
         db_session.commit()
@@ -27,7 +28,7 @@ def signup():
         flash("Your user has been created, please login.", category="success")
 
         return redirect(url_for('.signin'))
-    return render_template('auth/signup.html', form=form, agree=True)
+    return render_template('auth/signup.html', form=form)
 
 
 @auth_views.route('/signin', methods=['GET', 'POST'], strict_slashes=False)

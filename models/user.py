@@ -5,7 +5,7 @@ Patient Model: create a SQLAlchemy model User
 from flask import current_app, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from sqlalchemy.orm import relationship, backref
-from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Table
+from sqlalchemy import Column, Integer, String, Text, DateTime, ForeignKey, Table, Boolean
 from datetime import datetime
 from models.base_model import BaseModel, Base
 from config import db_session
@@ -52,6 +52,7 @@ class User(Base, BaseModel):
     email = Column(String(64), unique=True, index=True)
     firstname = Column(String(64), unique=False, index=True)
     lastname = Column(String(64), unique=False, index=True)
+    agree = Column(Boolean, default=True)
     password_hash = Column(String(128))
     roles = relationship("Role", secondary=roles)
 
