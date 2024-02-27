@@ -65,7 +65,7 @@ section .row .right-forms .form-area .sign-in-to{
 
 }
 
-section .row .right-forms .form-area form form-label{
+section .row .right-forms .form-area form #form-label{
     position: absolute;
     width: 143px;
     height: 37px;
@@ -214,7 +214,20 @@ section .row .right-forms .form-area form .dont-have-account{
 }
 
 
+
+
+
 /* sign up area  */
+section .row .right-forms .form-area{
+    position: absolute;
+    width: 541px;
+    height: 905px;
+    left: 65px;
+    top: 59px;
+
+    background: linear-gradient(180deg, rgba(250, 244, 244, 0.69) 0%, rgba(255, 255, 255, 0.71) 100%);
+    border-radius: 10px;
+}
 
 section .row .right-forms .form-area .sign-up-head{
     /* pis-name-login */
@@ -255,9 +268,8 @@ section .row .right-forms .form-area form .form-group-name{
     display: flex;
 }
 
-section .row .right-forms .form-area form .form-group-name .form-group-lastname{
-    /* lastname-group */
-    position: absolute;
+section .row .right-forms .form-area form .form-group-name .form-group-firstname{
+    /* position: absolute; */
     width: 235.35px;
     height: 103px;
     left: 0px;
@@ -265,30 +277,233 @@ section .row .right-forms .form-area form .form-group-name .form-group-lastname{
 }
 
 /* last name input  */
-section .row .right-forms .form-area form .form-group-name .form-lastname-input{
+section .row .right-forms .form-area form .form-group-name .form-group-firstname > input{
     box-sizing: border-box;
+
     position: absolute;
-    width: 436px;
+    width: 214.53px;
     height: 55px;
-    left: 22px;
-    top: 55px;
+    left: 20.82px;
+    top: 51px;
 
     border: 1px solid #000000;
     border-radius: 10px;
-    padding: 0 20px;
-    font-size: 20px;
+
 }
 
 
-/* firstname-group */
-section .row .right-forms .form-area form .form-group-name .form-group-firstname{
+/* lastname input  */
+/* section .row .right-forms .form-area form .form-group-name .form-group-lastname > input{
+    box-sizing: border-box;
+
     position: absolute;
-    width: 268.39px;
-    height: 107px;
-    left: 243.61px;
-    top: 149px;
+    width: 244.53px;
+    height: 55px;
+    left: 267.47px;
+    top: 201px;
+
+    border: 1px solid #000000;
+    border-radius: 10px;
+
+} */
+
+
+
+
+/* email group */
+section .row .right-forms .form-area form .form-group-signup-email{
+    position: absolute;
+    width: 512px;
+    height: 112px;
+    left: 0px;
+    top: 268px;
+}
+
+/* email group label  */
+section .row .right-forms .form-area form .form-group-signup-email > label{
+    position: absolute;
+    width: 69px;
+    height: 26px;
+    left: 22px;
+    top: 9px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #0B0B0B;
+}
+
+/* email group input  */
+section .row .right-forms .form-area form .form-group-signup-email > input{
+
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 487.41px;
+    height: 56px;
+    left: 24.59px;
+    top: 51px;
+
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+
+/* password group */
+section .row .right-forms .form-area form .form-group-signup-password{
+    position: absolute;
+    width: 512px;
+    height: 112px;
+    left: 0px;
+    top: 391px;
+}
+
+/* password group label  */
+section .row .right-forms .form-area form .form-group-signup-password > label{
+    position: absolute;
+    width: 158px;
+    height: 26px;
+    left: 22px;
+    top: 9px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #0B0B0B;
+
+}
+
+/* password form input  */
+section .row .right-forms .form-area form .form-group-signup-password > input{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 487.41px;
+    height: 56px;
+    left: 24.59px;
+    top: 51px;
+
+    border: 1px solid #000000;
+    border-radius: 10px;
+}
+
+/* confirm-group */
+section .row .right-forms .form-area form .form-group-password2{
+    position: absolute;
+    width: 512px;
+    height: 112px;
+    left: 0px;
+    top: 515px;
+}
+
+/* confirm password group label*/
+section .row .right-forms .form-area form .form-group-password2 .form-label-password2{
+    
+    position: absolute;
+    width: 359px;
+    height: 26px;
+    left: 22px;
+    top: 9px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #0B0B0B;
+
+}
+
+/* confirm password group input */
+section .row .right-forms .form-area form .form-group-password2 .form-password2-input{
+    box-sizing: border-box;
+
+    position: absolute;
+    width: 487.41px;
+    height: 56px;
+    left: 24.59px;
+    top: 52px;
+
+    border: 1px solid #000000;
+    border-radius: 10px;
 
 }
 
 
 
+/* form group agree  */
+section .row .right-forms .form-area form .form-group-agree{
+    position: absolute;
+    width: auto;
+    height: 42px;
+    left: 25px;
+    top: 650px;
+}
+/* agree text  */
+section .row .right-forms .form-area form .form-group-agree > span{
+    margin-left: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 21px;
+
+    color: #000000;
+}
+
+/* form group signup submit  */
+section .row .right-forms .form-area form .form-signup-group-submit{
+    position: absolute;
+    width: 489px;
+    height: 57px;
+    left: 20px;
+    top: 705px;
+
+    background: #0D0303;
+    border-radius: 20px;
+}
+
+/* submit button text*/
+section .row .right-forms .form-area form .form-signup-group-submit .form-submit{
+   /* Sign Up */
+   
+    width: 433px;
+    height: 57px;
+    background: #0D0303;
+    border-radius: 20px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 25px;
+    line-height: 30px;
+    color: #FFFFFF;
+    margin-left: 20px;
+    border: none;
+
+}
+
+/* alrerady have an account  */
+section .row .right-forms .form-area form .already-have-account{
+    position: absolute;
+    width: 378px;
+    height: 21px;
+    left: 124px;
+    top: 823px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 21px;
+    /* identical to box height */
+
+    color: #000000;
+}

@@ -13,7 +13,7 @@ class SignupForm(FlaskForm):
     #            'Usernames must have only letters, numbers, dots or '
     #            'underscores')])
     firstname = StringField('Firstname', validators=[DataRequired(), Length(1, 40)])   
-    lastname = StringField('Firstname', validators=[DataRequired(), Length(1, 40)])
+    lastname = StringField('Lastname', validators=[DataRequired(), Length(1, 40)])
     password = PasswordField('Password', validators=[
         DataRequired(), EqualTo('password2', message='Passwords must match.')])
     password2 = PasswordField('Confirm password', validators=[DataRequired()])

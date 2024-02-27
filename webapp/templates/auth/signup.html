@@ -35,32 +35,32 @@
                         </div>
                     </div>
                     
-                    <div class="form-group-email">
+                    <div class="form-group-signup-email">
                         {{ form.email.label(id="form-label") }}
-                        {{ form.email(class="form-email-input", type="email") }}
+                        {{ form.email(class="form-signup-email-input", type="email") }}
                     </div>
 
-                    <div class="form-group-password">
-                        {{ form.password.label(id="form-label") }}
-                        {{ form.password(class="form-password-input", type="password") }}
+                    <div class="form-group-signup-password">
+                        {{ form.password.label(id="") }}
+                        {{ form.password(class="form-signup-password-input", type="password") }}
                     </div>
 
-                    <div class="form-group-password">
-                        {{ form.password2.label(id="form-label") }}
-                        {{ form.password2(class="form-password-input", type="password") }}
+                    <div class="form-group-password2">
+                        {{ form.password2.label(class="form-label-password2") }}
+                        {{ form.password2(class="form-password2-input", type="password") }}
                     </div>
 
                     <div class="form-group-agree">
                         {{ form.agree(class="form-input") }}
-                        {{ form.agree.label(class="form-label-remember") }}
+                        <span id="agree">I agree with P.I.S’s <a href="">Terms of service</a>, <a href="">Privacy Policy</a> </span>
                     </div>
                 
                     
-                    <div class="form-group-submit">
+                    <div class="form-signup-group-submit">
                         {{ form.submit(class="form-submit") }}
                     </div>
 
-                    <p class="dont-have-account">Already have an account? <a href="{{url_for("auth_views.signin")}}">Sign In</a></p>
+                    <p class="already-have-account">Already have an account? <a href="{{url_for("auth_views.signin")}}">Sign In</a></p>
                 </form>
             </div>
         </div>
