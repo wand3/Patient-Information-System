@@ -57,10 +57,12 @@ class User(Base, BaseModel):
     roles = relationship("Role", secondary=roles)
 
 
-    def __init__(self, email, username=""):
+    def __init__(self, email, firstname, lastname, agree):
         self.email = email
         default = db_session.query(Role).filter_by(name="default").one()
-        self.username = username
+        self.firstname = firstname
+        self.lastname = lastname
+        self.agree = agree
         self.roles.append(default)
 
         # add administrator
