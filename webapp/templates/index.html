@@ -30,7 +30,13 @@
 
     <h1>PIS home page</h1>
     <br>
-    <h4>Welcome {{ current_user.username }}!</h4>
+    {% if current_user.has_role('doctor') %}
+        <h4>Welcome RO.{{ current_user.firstname }}!</h4>
+    {% elif current_user.has_role('record_officer') %}
+        <h4>Welcome Dr. {{ current_user.firstname }}!</h4>
+    {% elif current_user.has_role('default') %}
+        <h4>Welcome {{ current_user.firstname }}!</h4>
+    {% endif %}
     
     <div class="d-flex flex-row flex-wrap">
         {% if current_user.is_authenticated %}

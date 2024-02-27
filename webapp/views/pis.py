@@ -14,7 +14,15 @@ from webapp.auth import has_role
 
 @app_views.route('/', methods=['GET'], strict_slashes=False)
 def index():
-    return render_template("index.html")
+    
+    if current_user:
+        # get logged in user by id 
+        try:
+            user = db_session.query(User).filter_by(id=current_user.id).first()
+            return render_template("index.html", user=user)
+
+        except AttributeError as e:
+            return render_template("index.html")
 
 
 # Patient profile route

@@ -166,6 +166,9 @@ class User(Base, BaseModel):
 
   
 class AnonymousUser(AnonymousUserMixin):
+    def has_role(self, name=''):
+        return False
+    
     def can(self, permissions):
         return False
 
