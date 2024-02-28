@@ -137,11 +137,7 @@ class User(Base, BaseModel):
                 # role_delete.roles.pop()
                 db_session.commit()
             flash(f"User has no role at the moment")
-
-        
-            
-
-
+     
     @property
     def is_active(self):
         return True
@@ -149,9 +145,7 @@ class User(Base, BaseModel):
     @property
     def is_authenticated(self):
         return True
-        # if self.user_logged_in:
-        #     return True
-    
+        
     @property
     def is_anonymous(self):
         return False
@@ -162,11 +156,11 @@ class User(Base, BaseModel):
         return (self.id)
     
     def __repr__(self):
-        return '<User %r>' % self.username
+        return '<User %r>' % self.firstname
 
   
 class AnonymousUser(AnonymousUserMixin):
-    def has_role(self, name=''):
+    def has_role(self, name='default'):
         return False
     
     def can(self, permissions):
