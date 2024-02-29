@@ -1,0 +1,64 @@
+
+:root{
+
+    /*      Theme colors        */
+    --text-dark: #000000;
+    --text-light : #ffffff;
+    --bg-light: #F6EDFE;
+    --bg-dark: #6C3AAD;
+    
+    /* gradient color   */
+    --lightbox-shadow: 0px 3px 4px 4px rgba(108, 58, 173, 0.08);
+
+
+    /*      theme font-family   */
+    --Abel: 'Abel', cursive;
+    --Anton: 'Anton', cursive;
+    --Josefin : 'Josefin', cursive;
+    --Lexend: 'Lexend', cursive;
+    --Livvic : 'Livvic', cursive;
+}
+
+
+body {
+    margin: 0%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+}
+
+.content  {
+    display: flex;
+}
+.side-nav{
+    position: absolute;
+    width: 137px;
+    height: 1024px;
+    /* left: 0px;
+    top: 0px; */
+    background: #FFFFFF;
+}
+
+.home-body{
+    /* home-body */
+
+    position: fixed;
+    width: 1010px;
+    height: 1024px;
+    left: 137px;
+    top: 0px;
+
+    background: #F6EDFE;
+}
+
+
+.profile-panel{
+    position: fixed;
+    width: 293px;
+    height: 1024px;
+    left: 1147px;
+    top: 0px;
+
+    background: var(--bg-dark);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}

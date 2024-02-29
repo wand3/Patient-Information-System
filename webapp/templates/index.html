@@ -1,8 +1,10 @@
 {% extends "base.html" %}
-{% block title %}Register{% endblock %}
 {% block head %}
-  {{ super() }}
-
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index-styles.css') }}">                                    
+{% endblock %}
+{% block title %}Register{% endblock %}
 {% endblock %}
 {% block content %}
 <!-- display flashed messages -->
@@ -12,21 +14,39 @@
         {{ message }}
     </div>
     {% endfor %}
+    <!-- side navigation section  -->
+    <section class="side-nav">
+        {% block nav %}
+            {% include "nav.html" %}
+        {% endblock %}
+    </section>
+    <!-- home body section  -->
+    <section class="home-body">
+        {% block homebody %}
+            {% include "user_body.html" %}
+        {% endblock %}
+    </section>
+
+
+    <!-- user profile panel section  -->
+    <section class="profile-panel">
     
-    <!-- search area  -->
-    <div class="search">
-        <input type="text" name="q"
-            hx-get="{{ url_for('app_views.search')}}"
-            hx-trigger="keyup changed delay:500ms load"
-            hx-target="#search-results"
-            placeholder="Search..."
-        >
-        <div id="search-results">
-            {% block results %}
-            {% endblock %}
+    </section>
+    
+        <!-- search area  -->
+        <div class="search">
+            <input type="text" name="q"
+                hx-get="{{ url_for('app_views.search')}}"
+                hx-trigger="keyup changed delay:500ms load"
+                hx-target="#search-results"
+                placeholder="Search..."
+            >
+            <div id="search-results">
+                {% block results %}
+                {% endblock %}
+            </div>
+            
         </div>
-        
-    </div>
 
     <h1>PIS home page</h1>
     <br>
@@ -52,16 +72,13 @@
         {% if current_user.is_anonymous == True %}
             <!-- <a href="{{ url_for('app_views.register') }}"><button type="button" class="btn button secondary-button mr-4 text-uppercase" >New Patient</button></a> -->
         {% elif current_user.is_anonymous == False and current_user.has_role('administrator', 'record_officer') %}
-            <a href="{{ url_for('app_views.register') }}"><button type="button" class="btn button secondary-button mr-4 text-uppercase" >New Patient</button></a>
+            <a href="{{ url_for('app_views.register') }}"><button type="button" class="btn button secondary-button mr-4 text-uppercase">New Patient</button></a>
         {% endif %}
 
     </div>
     
 {% endblock %}
-{% block script %}
-    {{ super() }}
-    <script src="{{ url_for('static', filename='js/htmx.min.js')}}"></script>
-{% endblock %}
+
 
 
     
