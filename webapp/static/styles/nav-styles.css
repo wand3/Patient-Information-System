@@ -7,3 +7,41 @@
     background-color: black;
 
 }
+
+
+.home-body .search-box{
+    position: absolute;
+    width: 362px;
+    height: 49px;
+    left: 34px;
+    top: 30px;
+
+    background: #FFFFFF;
+    border-radius: 15px;
+}
+
+.home-body .search-box > svg{
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    left: 24px;
+    top: 9px;
+}
+
+.home-body .search-box > p{
+    position: absolute;
+    width: 85px;
+    height: 29px;
+    left: 70px;
+    top: -9px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 24px;
+
+    color: var(--bg-dark);
+    opacity: .5;
+
+}
