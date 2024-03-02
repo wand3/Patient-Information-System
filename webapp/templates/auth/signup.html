@@ -38,6 +38,9 @@
                     <div class="form-group-signup-email">
                         {{ form.email.label(id="form-label") }}
                         {{ form.email(class="form-signup-email-input", type="email") }}
+                        {% for error in form.email.errors %}
+                            <span style="color: #cf2323; position: absolute;left: 27px;top: 110px">{{ error }}</span>
+                        {% endfor %}
                     </div>
 
                     <div class="form-group-signup-password">

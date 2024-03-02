@@ -1,3 +1,11 @@
+.side-nav > svg{
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    left: 39px;
+    top: 43px;
+}
+
 .side-nav .nav-list{
     position: absolute;
     width: 76px;
@@ -19,6 +27,7 @@
     background: #FFFFFF;
     border-radius: 15px;
 }
+
 
 .home-body .search-box > svg{
     position: absolute;

@@ -1,8 +1,8 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, TextAreaField, TelField, IntegerField, EmailField, SelectField, DateField, PasswordField, BooleanField
-from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo
+from wtforms.validators import DataRequired, Length, Email, Regexp, EqualTo, ValidationError
 from models.patient import Patient
-# from models.user import Role, User
+from models.user import User
 from config import db_session
 
 
@@ -19,6 +19,12 @@ class SignupForm(FlaskForm):
     password2 = PasswordField('Confirm password', validators=[DataRequired()])
     agree = BooleanField('I agree')
     submit = SubmitField('Sign Up')
+
+
+    def validate_email(self, field):
+        user = db_session.query(User).filter_by(email=field.data).first()
+        if user:
+            raise ValidationError('Email already exist, try another')
 
 
 class SigninForm(FlaskForm):
