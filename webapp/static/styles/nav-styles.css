@@ -1,4 +1,4 @@
-.side-nav > svg{
+.side-nav .briefcase{
     position: absolute;
     width: 60px;
     height: 60px;
@@ -12,10 +12,31 @@
     height: 805px;
     left: 28px;
     top: 169px;
-    background-color: black;
-
+    background-color: transparent;
 }
 
+.side-nav .nav-list > ul{
+/* Component 1 */
+
+position: absolute;
+width: 79px;
+height: 421px;
+left: 0px;
+top: auto;
+}
+
+
+
+.side-nav .nav-list .logout{
+    /* logout-group */
+
+    position: absolute;
+    width: 76px;
+    height: 58px;
+    left: 3px;
+    top: 254px;
+
+}
 
 .home-body .search-box{
     position: absolute;
@@ -37,20 +58,20 @@
     top: 9px;
 }
 
-.home-body .search-box > p{
+
+.home-body .search-box > input{
+
     position: absolute;
-    width: 85px;
-    height: 29px;
-    left: 70px;
-    top: -9px;
+    width: 245px;
+    height: 43px;
+    left: 73px;
+    top: 0px;
 
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 24px;
-
+    background: #FFFFFF;
+    border-radius: 15px;
+    border-color: transparent;
     color: var(--bg-dark);
-    opacity: .5;
+    font-size: 20px;
+    padding: 0 20px;
 
 }

@@ -4,16 +4,9 @@
     {{ super() }}
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/index-styles.css') }}">                                    
 {% endblock %}
-{% block title %}Register{% endblock %}
 {% endblock %}
 {% block content %}
 <!-- display flashed messages -->
-    {% for message in get_flashed_messages() %}
-    <div class="alert alert-warning " style="margin: 15px 0; background-color: transparent; color: rgb(89, 31, 31)">
-        <button type="button" class="close" data-dismiss="alert" style="color: rgb(112, 43, 43)">&times;</button>
-        {{ message }}
-    </div>
-    {% endfor %}
     <!-- side navigation section  -->
     <section class="side-nav">
         {% block nav %}
@@ -23,6 +16,7 @@
     <!-- home body section  -->
     <section class="home-body">
         {% block homebody %}
+
             {% include "user_body.html" %}
         {% endblock %}
     </section>
@@ -32,34 +26,10 @@
     <section class="profile-panel">
     
     </section>
-    
-        <!-- search area  -->
-        <div class="search">
-            <input type="text" name="q"
-                hx-get="{{ url_for('app_views.search')}}"
-                hx-trigger="keyup changed delay:500ms load"
-                hx-target="#search-results"
-                placeholder="Search..."
-            >
-            <div id="search-results">
-                {% block results %}
-                {% endblock %}
-            </div>
-            
-        </div>
 
-    <h1>PIS home page</h1>
-    <br>
-    {% if current_user.has_role('doctor') %}
-        <h4>Welcome Dr. {{ current_user.firstname }}!</h4>
-    {% elif current_user.has_role('record_officer') %}
-        <h4>Welcome RO. {{ current_user.firstname }}!</h4>
-    {% else %}
-        <h4>Welcome Stranger!</h4>
-    {% endif %}
-    
-    <div class="d-flex flex-row flex-wrap">
+    <!-- <div class="d-flex flex-row flex-wrap">
         {% if current_user.is_authenticated %}
+
             <a href="{{ url_for('auth_views.logout') }}"><button type="button" class="btn button primary-button text-uppercase">Logout</button></a>
         {% else %}
 
@@ -75,7 +45,7 @@
             <a href="{{ url_for('app_views.register') }}"><button type="button" class="btn button secondary-button mr-4 text-uppercase">New Patient</button></a>
         {% endif %}
 
-    </div>
+    </div> -->
     
 {% endblock %}
 

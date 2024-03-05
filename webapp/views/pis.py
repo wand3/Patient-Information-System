@@ -141,3 +141,10 @@ def edit_record(user_id):
 
 
 # delete patient record
+
+
+# doctor appointments
+@app_views.route('/appointments/<int:user_id>', methods=["GET", "POST"], strict_slashes=False)
+def appointments(id):
+    
+    return '<h1> Doctor appointments here </h1>'
